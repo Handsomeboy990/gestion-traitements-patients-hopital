@@ -332,8 +332,8 @@ a {
 }
 
 
-body{
-    margin-top:20px;
+body {
+    margin-top: 0;
     padding: 0%;
 }
 .bg-light-gray {
@@ -454,4 +454,17 @@ body{
 .label-inscription{
     display: flex;
     width: 20%;
+}
+
+
+.couleur-nav{
+    background-color: #E9FFEB;
+}
+
+.sidebar-logo{
+    max-width: 210px;
+}
+
+.sidebar-logo a{
+    left: 40px;
 }

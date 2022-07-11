@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : lun. 20 juin 2022 à 12:08
+-- Généré le : jeu. 07 juil. 2022 à 13:28
 -- Version du serveur : 5.7.36
 -- Version de PHP : 7.4.26
 
@@ -235,10 +235,12 @@ CREATE TABLE IF NOT EXISTS `utilisateur` (
   `date_naissance` date NOT NULL,
   `email` varchar(255) NOT NULL,
   `nom_utilisateur` varchar(255) NOT NULL,
-  `est_actif` tinyint(1) NOT NULL,
+  `est_actif` tinyint(1) NOT NULL DEFAULT '0',
   `mot_de_passe` varchar(255) NOT NULL,
   `role` varchar(255) NOT NULL,
-  `est_supprime` tinyint(1) NOT NULL,
+  `est_supprime` tinyint(1) NOT NULL DEFAULT '0',
+  `creer_le` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `maj_le` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 

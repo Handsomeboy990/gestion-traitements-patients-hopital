@@ -11875,7 +11875,6 @@ body:not(.layout-fixed) .main-sidebar .sidebar {
 }
 
 .main-header {
-  border-bottom: 1px solid #dee2e6;
   z-index: 1034;
 }
 

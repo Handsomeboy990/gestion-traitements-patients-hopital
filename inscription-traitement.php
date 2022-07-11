@@ -59,7 +59,7 @@
 
         if ($donnees["mot-passe"] != $donnees["retaper-mot-passe"]) {
 
-            $erreurs["mot-passe"] = $erreurs["retaper-mot-passe"] = "Les mots de passe ne sont pas identitque. Veuillez le réesayer.";
+            $erreurs["mot-passe"] = $erreurs["retaper-mot-passe"] = "Les mots de passe ne sont pas identitques. Veuillez réesayer.";
 
         } else if(!filter_var($donnees["email"], FILTER_VALIDATE_EMAIL)){
             $erreurs["email"] = "Cette adresse mail n'est pas une adresse mail valide. Veuillez le changez.";
@@ -84,7 +84,7 @@
         $db = connect_db();
 
         // Ecriture de la requête
-        $requette = 'INSERT INTO utilisateur (nom, prenom, sexe, date_naissance, email, nom_utilisateur, mot_passe) VALUES (:nom, :prenom, :sexe, :date_naissance, :email, :nom_utilisateur, :mot_passe);';
+        $requette = 'INSERT INTO utilisateur (nom, prenom, sexe, date_naissance, email, nom_utilisateur, mot_de_passe) VALUES (:nom, :prenom, :sexe, :date_naissance, :email, :nom_utilisateur, :mot_de_passe)';
 
         // Préparation
         $inserer_utilisateur = $db->prepare($requette);
@@ -97,17 +97,17 @@
             'date_naissance' => $donnees["date-naissance"],
             'email' => $donnees["email"],
             'nom_utilisateur' => $donnees["nom-utilisateur"],
-            'mot_passe' => sha1($donnees["mot-passe"])
+            'mot_de_passe' => sha1($donnees["mot-passe"])
         ]);
 
 
         if($resultat){
             $message_success["statut"] = 1;
-            $message_success["message"] = "Inscription éffectué avec succès.";
+            $message_success["message"] = "Inscription éffectuée avec succès.";
         }else{
 
             $message_success["statut"] = 0;
-            $message_success["message"] = "Oups! Une erreure s'est produite lors de l'inscription. Veuillez réesayer";
+            $message_success["message"] = "Oups! Une erreur s'est produite lors de l'inscription. Veuillez réesayer";
         }
     }
 

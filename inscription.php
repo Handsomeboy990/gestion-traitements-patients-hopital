@@ -17,11 +17,16 @@ if($user_connected){
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="shortcut icon" href="public/img/logo.png" type="image/x-icon">
+
         <title>Inscription | Gestion de traitement des patients</title>
 
         <!-- Google Font: Source Sans Pro -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-        
+    
+        <!-- Favicons -->
+        <link href="public/img/logo.png" rel="icon">
+    
         <!-- Font Awesome -->
         <link rel="stylesheet" href="public/plugins/fontawesome/css/all.min.css">
         
@@ -50,7 +55,7 @@ if($user_connected){
                     <div class="card-header text-center">
 
                         <a href="inscription.php">
-                            <img class="w-25 img-fluid rounded-circle" src="images/logo.png" alt="Logo du centre de santé">
+                            <img class="w-25 img-fluid rounded-circle" src="public/img/logo.png" alt="Logo du centre de santé">
                         </a>
                     
                     </div>

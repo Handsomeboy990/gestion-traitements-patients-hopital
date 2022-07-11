@@ -115,14 +115,14 @@ function check_if_user_exist(string $email_user_name, string $password){
 
     $db = connect_db();
 
-    $requette = "SELECT * FROM utilisateur WHERE (email = :email or nom_utilisateur = :nom_utilisateur ) and mot_passe = :mot_passe";
+    $requette = "SELECT * FROM utilisateur WHERE (email = :email or nom_utilisateur = :nom_utilisateur ) and mot_de_passe = :mot_de_passe";
 
     $verifier_nom_utilisateur = $db->prepare($requette);
 
     $resultat = $verifier_nom_utilisateur->execute([
         'email' => $email_user_name,
         'nom_utilisateur' => $email_user_name,
-        'mot_passe' => sha1($password),
+        'mot_de_passe' => sha1($password),
     ]);
 
     if($resultat ){
@@ -167,12 +167,12 @@ function send_mail($email, $message){
         $mail->SMTPSecure = "tls";
         $mail->Port       = 587;
         $mail->Host       = "smtp.gmail.com";
-        $mail->Username   = "sendmailcefp@gmail.com";
-        $mail->Password   = "Iso-Doss$22#G";
+        $mail->Username   = "chasakry@gmail.com";
+        $mail->Password   = "Mike#password@22";
 
         $mail->IsHTML(true);
-        $mail->AddAddress("dossou.israel48@gmail.com", "dossou.israel48@gmail.com");
-        $mail->SetFrom("dossou.israel48@gmail.com", "dossou.israel48@gmail.com");
+        $mail->AddAddress("lauretchacha@gmail.com", "lauretchacha@gmail.com");
+        $mail->SetFrom("lauretchacha@gmail.com", "lauretchacha@gmail.com");
         // $mail->AddReplyTo("reply-to-email@domain", "reply-to-name");
         // $mail->AddCC("cc-recipient-email@domain", "cc-recipient-name");
         $mail->Subject = "Test is Test Email sent via Gmail SMTP Server using PHP Mailer";
@@ -188,5 +188,42 @@ function send_mail($email, $message){
 
     } catch (Exception $e) {
         echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+    }
+}
+
+
+
+function router()
+{
+
+    if (isset($_GET["requette"]) && !empty($_GET["requette"])) {
+
+        switch ($_GET["requette"]) {
+
+            case "liste-patient":
+                include "patients/liste-patient.php";
+                break;
+
+            case "inscription-patient":
+                include "patients/inscription-patient.php";
+                break;
+
+            case "liste-consultation":
+                include "consultations/liste-consultation.php";
+                break;
+
+            case "inscription-patient":
+                include "patients/inscription-patient.php";
+                break;
+
+            default:
+                include "default-dashboard.php";
+                break;
+        }
+
+    } else {
+
+        include "default-dashboard.php";
+
     }
 }

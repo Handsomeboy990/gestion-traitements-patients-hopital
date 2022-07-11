@@ -18,10 +18,15 @@ if($user_connected){
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="public/img/logo.png" type="image/x-icon">
+
 
     <!-- lien bootstrap -->
     <link rel="stylesheet" href="public/plugins/bootstrap/css/bootstrap.css">
 
+    <!-- Favicons -->
+    <link href="public/img/logo.png" rel="icon">
+    
     <!-- Font Awesome -->
     <link rel="stylesheet" href="public/plugins/fontawesome/css/all.min.css">
     
@@ -52,7 +57,7 @@ if($user_connected){
 
                     <a href="connexion.php">
 
-                        <img class="w-25 img-fluid rounded-circle" src="images/logo.png" alt="Logo du centre de santé">
+                        <img class="w-25 img-fluid rounded-circle" src="public/img/logo.png" alt="Logo du centre de santé">
 
                     </a>
 
