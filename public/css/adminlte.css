@@ -5078,7 +5078,7 @@ input[type="button"].btn-block {
   float: left;
   padding-right: 0.5rem;
   color: #6c757d;
-  content: "/";
+  content: ">";
 }
 
 .breadcrumb-item + .breadcrumb-item:hover::before {

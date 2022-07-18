@@ -10,7 +10,7 @@
             <p class="paragraphe-titre">votre logiciel d'assistance pour la gestion des patients</p>
         </div>
 
-        <nav style="--bs-breadcrumb-divider: '/';" aria-label="breadcrumb" class="w-50 d-flex justify-content-end">
+        <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb" class="w-50 d-flex justify-content-end">
             <ol class="breadcrumb">
             <li class="breadcrumb-item"><i class="fas fa-fw fa-hospital-alt"></i><a href="?requette=dashboard">Accueil</a></li>
             </ol>

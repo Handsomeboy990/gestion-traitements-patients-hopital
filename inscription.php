@@ -500,7 +500,7 @@ if($user_connected){
                     </form>
 
                 </div>
-                <!-- /.form-box -->
+
             </div>
         </div>
 

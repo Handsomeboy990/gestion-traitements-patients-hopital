@@ -204,9 +204,13 @@ function router()
                 include "patients/liste-patient.php";
                 break;
 
-            case "inscription-patient":
-                include "patients/inscription-patient.php";
-                break;
+                case "inscription-patient":
+                    include "patients/inscription-patient.php";
+                    break;
+
+                case "inscription-patient-traitement":
+                    include "patients/inscription-patient-traitement.php";
+                    break;
 
             case "liste-consultation":
                 include "consultations/liste-consultation.php";
@@ -226,4 +230,89 @@ function router()
         include "default-dashboard.php";
 
     }
+}
+
+
+/**
+ * Cett fonction permet d'ajouter un patient a la base de données.
+ * 
+ * @param string $nom_patient Le nom du patient.
+ * 
+ * @return bool $inscription_patient Le resultat de l'ajout du patient.
+ */
+function inscription_patient(string $nom_patient, string $prenom_patient, string $sexepatient, int $date_naissance_patient, int $tel, int $age, string $adresse, string $allergie, string $antecedent, string $list_med): bool  {
+
+    $inscription_patient = false;
+
+    if(isset($nom_patient) && !empty($nom_patient)){
+
+        $db = connect_db();
+
+        // Ecriture de la requête
+        $requette = 'INSERT INTO patient (nompatient, prenompatient, sexepatient, date_naissance_patient, tel, age, adresse, allergiepatient, antecedent, liste_med) VALUES (:nompatient, :prenompatient, :sexe, :date_naissance_patient, :tel, :age, :adresse, :allergiepatient, :antecedent, :liste_med);';
+
+        // Préparation
+        $inserer_patient = $db->prepare($requette);
+
+        // Exécution ! La recette est maintenant en base de données
+        $resultat = $inserer_patient->execute([
+            'nompatient' => $nom_patient,
+            'prenompatient' => $prenom_patient,
+            'sexepatient' => $sexepatient,
+            'date_naissance_patient' => $date_naissance_patient,
+            'tel' => $tel,
+            'age' => $age,
+            'adresse' => $adresse,
+            'allergiepatient' => $allergiepatient,
+            'antecedent' => $antecedent,
+            'liste_med' => $list_med,
+        ]);
+
+
+        if ($resultat) {
+            $inscription_patient = true;
+        }
+
+    }
+
+    return $inscription_patient;
+
+}
+
+
+/**
+ * Cette fonction permet de verifier si un utilisateur (email + mot de passe) existe dans la base de donnée.
+ * Si oui elle retourne un tableau contenant les informations de l'utilisateur.
+ * Sinon elle retourne un tableau vide.
+ * 
+ * @param string $nom_patient Le nom.
+ * @param string $prenom_patient Le prenom.
+ * 
+ * @return array $check_if_patient_exist Les informations de l'utilisateur.
+ */
+function check_if_patient_exist(string $nom_patient, string $prenom_patient){
+
+    $check_if_patient_exist = [];
+
+    $db = connect_db();
+
+    $requette = "SELECT * FROM patient WHERE nompatient = :nompatient and prenompatient = :prenompatient";
+
+    $verifier_nompatient = $db->prepare($requette);
+
+    $resultat = $verifier_nompatient->execute([
+        'nompatient' => $nom_patient,
+        'prenompatient' => $prenom_patient,
+    ]);
+
+    if($resultat ){
+
+        $patient = $verifier_nompatient->fetch(PDO::FETCH_ASSOC);
+
+        $check_if_patient_exist = (isset($patient) && !empty($patient) && is_array($patient)) ? $patient : [];
+        
+    }
+
+    return $check_if_patient_exist;
+
 }
