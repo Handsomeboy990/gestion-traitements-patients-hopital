@@ -50,6 +50,7 @@ if (isset($_POST["antecedent"]) AND !empty($_POST["antecedent"])) {
     $erreurs["antecedent"] = "Ce champs est requis. Veuillez le renseigner.";
 };
 
+
 if (empty($erreurs)) {
 
     $check_if_patient_exist = check_if_patient_exist($donnees["nom_patient"], $donnees["prenom_patient"]);
@@ -86,7 +87,7 @@ if(empty($erreurs)){
     $db = connect_db();
 
     // Ecriture de la requête
-    $requette = 'INSERT INTO patient (nompatient, prenompatient, sexepatient, date_naissance_patient, tel, age, adresse, allergiepatient, antecedent, liste_med) VALUES (:nom, :prenom, :sexe, :date_naissance_patient, :tel, :age, :adresse, :allergiepatient, :antecedent, :liste_med)';
+    $requette = 'INSERT INTO patient  VALUES (:nom, :prenom, :sexe, :date_naissance_patient, :tel, :age, :adresse, :allergiepatient, :antecedent, :liste_med)';
 
     // Préparation
     $inserer_patient = $db->prepare($requette);
