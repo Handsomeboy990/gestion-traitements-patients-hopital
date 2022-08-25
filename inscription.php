@@ -48,17 +48,13 @@ if($user_connected){
 
         <div class="container bg-transparent">
 
-            <div class="card card-outline card-primary bg-transparent">
+            <div class="card card-outline card-primary bg-transparent col-10 m-auto">
 
-                <div class="col-md-6" style="width: 50%; margin: auto;">    
-                    
-                    <div class="card-header text-center">
+                <div class="col-md-6 w-50 m-auto"> 
 
-                        <a href="inscription.php">
+                        <a href="inscription.php" class="d-flex justify-content-center">
                             <img class="w-25 img-fluid rounded-circle" src="public/img/logo.png" alt="Logo du centre de santé">
-                        </a>
-                    
-                    </div>
+                        </a>         
 
                 </div>
 
@@ -110,7 +106,7 @@ if($user_connected){
 
                 ?>
 
-                    <h2 class="text-center mt-4 mb-3 titre_authentification">S' ENREGISTRER</h2>
+                    <h2 class="text-center titre_authentification">S' ENREGISTRER</h2>
 
                     <form action="inscription-traitement.php" method="post" novalidate class="bord-formulaire mt-3 border border-3">
 
@@ -119,7 +115,7 @@ if($user_connected){
                             <div class="col-sm-6">
 
                                 <!-- Le champs nom -->
-                                <div class="col-sm-12 mb-3">
+                                <div class="col-sm-12 mb-2">
 
                                     <label for="inscription-nom">
 
@@ -163,7 +159,7 @@ if($user_connected){
                                 </div>
 
                                 <!-- Le champs prenom -->
-                                <div class="col-sm-12 mb-3">
+                                <div class="col-sm-12 mb-2">
 
                                     <label for="inscription-prenom">
 
@@ -207,7 +203,7 @@ if($user_connected){
                                 </div>
 
                                 <!-- Le champs sexe -->
-                                <div class="col-sm-12 mb-3">
+                                <div class="col-sm-12 mb-2">
 
                                     <label for="inscription-sexe">
 
@@ -217,25 +213,26 @@ if($user_connected){
 
                                     </label>
 
-                                    <div class="form-group clearfix">
+                                    <div class="form-group input-group clearfix">
 
-                                        <div class="icheck-primary d-inline m-2">
+                                        <select name="sexe" required="required" title ="Selectionner votre sexe" class="form-control" placeholder="Selectionner votre sexe">
 
-                                            <input type="radio" name="sexe" checked="" id="sexe-m" value="M">
+                                            <option   value="">Selectionner sexe</option>
+                                            <option value="M">Masculin</option>
+                                            <option value="F">Féminin</option>
+                                        </select>
 
-                                            <label for="sexe-m">M</label>
+                                        <div class="input-group-append">
+
+                                            <div class="input-group-text">
+
+                                                <span class="fas fa-venus-mars"></span>
+
+                                            </div>
 
                                         </div>
 
-                                        <div class="icheck-primary d-inline m-2">
-
-                                            <input type="radio" name="sexe" checked="" id="sexe-f" value="F">
-
-                                            <label for="sexe-f">F</label>
-
-                                        </div>
                                     </div>
-
 
                                     <span class="text-danger">
 
@@ -252,7 +249,7 @@ if($user_connected){
                                 </div>
 
                                 <!-- Le champs date de naissance -->
-                                <div class="col-sm-12 mb-3">
+                                <div class="col-sm-12 mb-2">
 
                                     <label for="inscription-date-naissance">
 
@@ -262,7 +259,7 @@ if($user_connected){
 
                                     </label>
 
-                                    <div class="input-group mb-3">
+                                    <div class="input-group mb-2">
 
                                         <input type="date" name="date-naissance" id="inscription-date-naissance" class="form-control"
                                             placeholder="Veuillez entrer votre date de naissance"
@@ -273,7 +270,7 @@ if($user_connected){
 
                                             <div class="input-group-text">
 
-                                                <span class="fas fa-calendar-day"></span>
+                                                <span class="fas fa-baby"></span>
 
                                             </div>
 
@@ -301,7 +298,7 @@ if($user_connected){
                             <div class="col-sm-6">
                             
                                 <!-- Le champs email -->
-                                <div class="col-sm-12 mb-3">
+                                <div class="col-sm-12 mb-2">
 
                                     <label for="inscription-email">
 
@@ -345,7 +342,7 @@ if($user_connected){
                                 </div>
 
                                 <!-- Le champs nom d'utilisateur -->
-                                <div class="col-sm-12 mb-3">
+                                <div class="col-sm-12 mb-2">
 
                                     <label for="inscription-nom-utilisateur">
 
@@ -355,7 +352,7 @@ if($user_connected){
 
                                     </label>
 
-                                    <div class="input-group mb-3">
+                                    <div class="input-group mb-2">
 
                                         <input type="text" name="nom-utilisateur" id="inscription-nom-utilisateur" class="form-control"
                                             placeholder="Veuillez entrer votre nom d'utilisateur"
@@ -389,7 +386,7 @@ if($user_connected){
                                 </div>
 
                                 <!-- Le champs mot de passe -->
-                                <div class="col-sm-12 mb-3">
+                                <div class="col-sm-12 mb-2">
 
                                     <label for="inscription-mot-passe">
 
@@ -399,7 +396,7 @@ if($user_connected){
 
                                     </label>
 
-                                    <div class="input-group mb-3">
+                                    <div class="input-group mb-2">
 
                                         <input type="password" name="mot-passe" id="inscription-mot-passe" class="form-control"
                                             placeholder="Veuillez entrer votre mot de passe"
@@ -433,7 +430,7 @@ if($user_connected){
                                 </div>
 
                                 <!-- Le champs retaper mot de passe -->
-                                <div class="col-sm-12 mb-3">
+                                <div class="col-sm-12 mb-2">
 
                                     <label for="inscription-retaper-mot-passe">
 
@@ -443,7 +440,7 @@ if($user_connected){
 
                                     </label>
 
-                                    <div class="input-group mb-3">
+                                    <div class="input-group mb-2">
 
                                         <input type="password" name="retaper-mot-passe" id="inscription-retaper-mot-passe"
                                             class="form-control" placeholder="Veuillez retaper votre mot de passe"
@@ -480,7 +477,7 @@ if($user_connected){
 
                         </div>
 
-                        <div class="row mt-3">
+                        <div class="row m-2">
 
                             <div class="col-6">
     

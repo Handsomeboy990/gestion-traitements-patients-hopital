@@ -35,20 +35,13 @@ if (isset($_POST["date_naissance_patient"]) AND !empty($_POST["date_naissance_pa
     $erreurs["date_naissance_patient"] = "Ce champs est requis. Veuillez le renseigner.";
 };
 
-
-
-
 if (isset($_POST["allergie"]) AND !empty($_POST["allergie"])) {
     $donnees["allergie"] = $_POST["allergie"];
 } else {
     $erreurs["allergie"] = "Ce champs est requis. Veuillez le renseigner.";
 };
 
-if (isset($_POST["antecedent"]) AND !empty($_POST["antecedent"])) {
-    $donnees["antecedent"] = $_POST["antecedent"];
-} else {
-    $erreurs["antecedent"] = "Ce champs est requis. Veuillez le renseigner.";
-};
+
 
 
 if (empty($erreurs)) {
@@ -57,9 +50,9 @@ if (empty($erreurs)) {
 
     if (!$check_if_patient_exist) {
 
-        $inscription_patient = inscription_patient($donnees["nom_patient"], $donnees["prenom_patient"], $donnees["sexe_patient"], $donnees["date_naissance_patient"], $donnees["tel"], $donnees["age"], $donnees["adresse"], $donnees["allergie"], $donnees["antecedent"], $donnees["liste_med"]);
+        $inscription_patient = inscription_patient($donnees["nom_patient"], $donnees["prenom_patient"], $donnees["sexe_patient"], $donnees["date_naissance_patient"], $donnees["allergie"]);
 
-        if ($inscription_patient) {
+        if ($inscription_patient=true) {
 
             $message["statut"] = 1;
             $message["message"] = "Patient ajouté avec succès.";
@@ -67,14 +60,14 @@ if (empty($erreurs)) {
         } else {
 
             $message["statut"] = 0;
-            $message["message"] = "Oups! Une erreur s'est produite lors de l'ajout du patient. Veuillez réesayer.";
+            $message["message"] = "Désolé! Une erreur s'est produite lors de l'inscription du patient. Veuillez réesayer. Si le problème persiste, veuillez nous contacter.";
 
         }
 
     }else{
 
         $message["statut"] = 0;
-        $message["message"] = "Ce patient existe déjà dans la base de données. Veuillez réesayer.";
+        $message["message"] = "Ce patient existe déjà dans la base de données. Veuillez consulter la liste des patients.";
 
     }
 
@@ -83,11 +76,13 @@ if (empty($erreurs)) {
 
 
 
+
+/*
 if(empty($erreurs)){
     $db = connect_db();
 
     // Ecriture de la requête
-    $requette = 'INSERT INTO patient  VALUES (:nom, :prenom, :sexe, :date_naissance_patient, :tel, :age, :adresse, :allergiepatient, :antecedent, :liste_med)';
+    $requette = 'INSERT INTO patient (nompatient, prenompatient, sexepatient, date_naissance_patient, allergie)  VALUES (:nompatient, :prenompatient, :sexepatient, :date_naissance_patient, :allergie)';
 
     // Préparation
     $inserer_patient = $db->prepare($requette);
@@ -98,27 +93,19 @@ if(empty($erreurs)){
         'prenompatient' => $donnees["prenom_patient"],
         'sexepatient' => $donnees["sexe_patient"],
         'date_naissance_patient' => $donnees["date_naissance_patient"],
-        'tel' => $donnees["tel"],
-        'age' => $donnees["age"],
-        'adresse' => $donnees["adresse"],
-        'allergiepatient' => $donnees["allergie"],
-        'antecedent' => $donnees["antecedent"],
-        'liste_med' => $donnees["liste_med"],
-        
-    ]);
+        'allergie' => $donnees["allergie"]
+    ]) ;
 
 
-    if($resultat){
-        $message_success["statut"] = 1;
-        $message_success["message"] = "Patient ajouté avec succès.";
+    if($resultat=true){
+        $message["statut"] = 1;
+        $message_success = "Patient ajouté avec succès.";
     }else{
 
-        $message_success["statut"] = 0;
-        $message_success["message"] = "Oups! Une erreur s'est produite lors de l'ajout du patient. Veuillez réesayer";
+        $message["statut"] = 0;
+        $message_success = "Oups! Une erreur s'est produite lors de l'ajout du patient. Veuillez réesayer";
     }
 }
-
-
-
+*/
 
 include("patients/inscription-patient.php");

@@ -216,10 +216,6 @@ function router()
                 include "consultations/liste-consultation.php";
                 break;
 
-            case "inscription-patient":
-                include "patients/inscription-patient.php";
-                break;
-
             default:
                 include "default-dashboard.php";
                 break;
@@ -240,16 +236,17 @@ function router()
  * 
  * @return bool $inscription_patient Le resultat de l'ajout du patient.
  */
-function inscription_patient(string $nom_patient, string $prenom_patient, string $sexepatient, int $date_naissance_patient, int $tel, int $age, string $adresse, string $allergie, string $antecedent, string $list_med): bool  {
+function inscription_patient(string $nom_patient, string $prenom_patient, string $sexepatient, string $date_naissance_patient, string $allergie): bool  
+{
 
     $inscription_patient = false;
 
-    if(isset($nom_patient) && !empty($nom_patient)){
+    if((isset($nom_patient) && !empty($nom_patient)) AND (isset($prenom_patient) && !empty($prenom_patient)) AND (isset($sexepatient) && !empty($sexepatient)) AND (isset($date_naissance_patient) && !empty($date_naissance_patient)) AND (isset($allergie) && !empty($allergie)) ){
 
         $db = connect_db();
 
         // Ecriture de la requête
-        $requette = 'INSERT INTO patient (nompatient, prenompatient, sexepatient, date_naissance_patient, tel, age, adresse, allergiepatient, antecedent, liste_med) VALUES (:nompatient, :prenompatient, :sexe, :date_naissance_patient, :tel, :age, :adresse, :allergiepatient, :antecedent, :liste_med);';
+        $requette = 'INSERT INTO patient (nompatient, prenompatient, sexepatient, date_naissance_patient, allergie) VALUES (:nompatient, :prenompatient, :sexepatient, :date_naissance_patient, :allergie);';
 
         // Préparation
         $inserer_patient = $db->prepare($requette);
@@ -260,12 +257,8 @@ function inscription_patient(string $nom_patient, string $prenom_patient, string
             'prenompatient' => $prenom_patient,
             'sexepatient' => $sexepatient,
             'date_naissance_patient' => $date_naissance_patient,
-            'tel' => $tel,
-            'age' => $age,
-            'adresse' => $adresse,
-            'allergiepatient' => $allergiepatient,
-            'antecedent' => $antecedent,
-            'liste_med' => $list_med,
+            'allergie' => $allergie
+
         ]);
 
 
@@ -278,6 +271,8 @@ function inscription_patient(string $nom_patient, string $prenom_patient, string
     return $inscription_patient;
 
 }
+
+
 
 
 /**

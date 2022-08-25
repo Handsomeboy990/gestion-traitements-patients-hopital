@@ -35,7 +35,7 @@
                 if (isset($message["statut"]) && 0 == $message["statut"]) {
 
                     ?>
-                    <div class="alert alert-danger" role="alert">
+                    <div class="alert alert-warning" role="alert">
                         <?= $message["message"]; ?>
                     </div>
                     <?php
@@ -44,7 +44,7 @@
 
                     ?>
                     <div class="alert alert-success" role="alert">
-                        <?= $message["message"]; ?>
+                        <?= $message["message"];?>
                     </div>
                     <?php
 
@@ -56,14 +56,29 @@
 
                     <div class="row">
 
-                        <div class="col-sm-6">
+                        <div class="col-sm-12">
 
                             <div class="col-sm-12 mb-3">
                                 <h2 class="d-flex justify-content-center mb-5">Informations Générales du Patient</h2>
                             </div>
                             <div class="form-label col-sm-12 mb-3">
                                 <label for="nom_patient" class="col-form-label">Nom<span class="text-danger">*</span></label>
-                                <input type="text" required= "required" class="form-control" name="nom_patient" id="nom_patient" placeholder="Veuillez entrer le nom du patient" value="<?= (isset($donnees["nom_patient"]) && !empty($donnees["nom_patient"])) ? $donnees["nom_patient"] : ""; ?>">
+                                
+                                <div class="input-group">
+    
+                                    <input type="text" required= "required" class="form-control" name="nom_patient" id="nom_patient" placeholder="Veuillez entrer le nom du patient" value="<?= (isset($donnees["nom_patient"]) && !empty($donnees["nom_patient"])) ? $donnees["nom_patient"] : ""; ?>">
+        
+        
+                                    <div class="input-group-append">
+
+                                        <div class="input-group-text">
+
+                                            <span class="fas fa-user"></span>
+
+                                        </div>
+
+                                    </div>
+                                </div>
                             
                             
                                 <span class="text-danger">
@@ -82,9 +97,22 @@
 
                             <div class="form-label col-sm-12 mb-3">
                                 <label for="prenom_patient" class="col-form-label">Prénom(s)<span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" name="prenom_patient" id="prenom_patient" required= "required" placeholder="Veuillez entrer le prénom du patient" value="<?= (isset($donnees["prenom_patient"]) && !empty($donnees["prenom_patient"])) ? $donnees["prenom_patient"] : ""; ?>">
+                               
+                                <div class="input-group">
+                                
+                                    <input type="text" class="form-control" name="prenom_patient" id="prenom_patient" required= "required" placeholder="Veuillez entrer le prénom du patient" value="<?= (isset($donnees["prenom_patient"]) && !empty($donnees["prenom_patient"])) ? $donnees["prenom_patient"] : ""; ?>">
                             
-                            
+                                    <div class="input-group-append">
+
+                                        <div class="input-group-text">
+
+                                            <span class="fas fa-user"></span>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
                                 <span class="text-danger">
 
                                     <?php
@@ -123,13 +151,27 @@
 
                                 <div class="form-group clearfix">
 
-                                    <select name="sexe_patient" required="required" title ="Selectionner le sexe du patient" class="form-control" placeholder="Selectionner le sexe du patient">
 
-                                        <option   value="">Selectionner sexe</option>
-                                        <option value="M">Masculin</option>
-                                        <option value="F">Féminin</option>
-                                    </select>
+                                    <div class="input-group">
+                                        <select name="sexe_patient" required="required" title ="Selectionner le sexe du patient" class="form-control" placeholder="Selectionner le sexe du patient">
 
+                                            <option   value="">Selectionner sexe</option>
+                                            <option value="M">Masculin</option>
+                                            <option value="F">Féminin</option>
+                                        </select>
+
+                                        
+                                        <div class="input-group-append">
+
+                                            <div class="input-group-text">
+
+                                                <span class="fas fa-venus-mars"></span>
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
                                 </div>
 
 
@@ -165,6 +207,18 @@
                                         value="<?= (isset($donnees["date_naissance_patient"]) AND !empty($donnees["date_naissance_patient"])) ? $donnees["date_naissance_patient"] : ""; ?>"
                                         required>
 
+                                    
+                                    <div class="input-group-append">
+
+                                        <div class="input-group-text">
+
+                                            <span class="fas fa-baby"></span>
+
+                                        </div>
+
+                                    </div>
+                               
+                               
                                 </div>
 
                                 <span class="text-danger">
@@ -182,36 +236,24 @@
 
                             </div>
 
-                            <div class="col-sm-12 mb-3 label-form">
-                                <b for="inscription-tel">Téléphone</b>
-                                <input type="text" class='form-control' pattern="\d{9,9}"  maxlength="9" name="tel" value="<?= (isset($donnees["tel"]) AND !empty($donnees["tel"])) ? $donnees["tel"] : ""; ?>" >
-
-                            </div>
-
-                            <div class="form-label col-sm-12 mb-3">
-                                <label for="inscription-age">Age<span class="text-danger"></span></label>
-                                <input type="number" class='form-control'  id="number"  type="number" min="0" max="120" value="<?= (isset($donnees["age"]) AND !empty($donnees["age"])) ? $donnees["age"] : ""; ?>">
-
-
-                            </div>
-
-                            <div class="form-label col-sm-12 mb-3">    
-                                <b class="label-inscription">Adresse:</b>
-                                <textarea class='form-control' value="<?= (isset($donnees["adresse"]) AND !empty($donnees["adresse"])) ? $donnees["adresse"] : ""; ?>"></textarea>
-                            </div>
-
-                        </div>
-                        <div class="col-sm-6">
-
-                            <div class="col-sm-12 mb-3">
-                                <h2 class="d-flex justify-content-center">Historique Médical du Patient</h2><br>
-                            </div>
-
                             <div class="form-label col-sm-12 mb-3">
                                 <label for="allergie" class="col-form-label">Allergie(s)<span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" name="allergie" id="allergie" required= "required"  value="<?= (isset($donnees["allergie"]) && !empty($donnees["allergie"])) ? $donnees["allergie"] : ""; ?>">
+                                
+                                <div class="input-group">
+                                    <input type="text" class="form-control" name="allergie" id="allergie" required= "required"  value="<?= (isset($donnees["allergie"]) && !empty($donnees["allergie"])) ? $donnees["allergie"] : ""; ?>">
                             
-                            
+                                    
+                                    <div class="input-group-append">
+
+                                        <div class="input-group-text">
+
+                                            <span class="fa-solid fa-hand-dots"></span>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
                                 <span class="text-danger">
 
                                     <?php
@@ -227,61 +269,10 @@
 
 
 
-                            
-                            <div class='col-sm-12 mb-3'>
-
-                                <b>Antécédents médicaux:<span class="text-danger">*</span></b><br>
-    
-                                <select name="antecedent" required="required" title ="Antécédents Médicaux" class="form-control" placeholder="Antécédents Médicaux du patient">
-                                    <option value="">Sélectionnez les antécédents médicaux du patient</option>
-                                    <option  value="Anémie" >Anémie
-                                    <br></option>
-                                    <option value="Asthme" >Asthme
-                                    <br></option>
-                                    <option value="Arthrose" >Arthrose
-                                    <br></option>
-                                    <option value="Cancer" >Cancer
-                                    <br></option>
-                                    <option value="Goutte" >Goutte
-                                    <br></option>
-                                    <option value="Diabète" >Diabete
-                                    <br></option>
-                                    <option value="Troubles émotionnelles" >Troubles émotionnelles
-                                    <br></option>
-                                    <option  value="Epilepsie" >Epilepsie
-                                    <br>
-                                    <option value="Calculs biliaires" >Calculs biliaires</option><br>
-                                    <option value="Antécédent cardiaque" >Antécédent cardiaque
-                                    <br></option><br>
-                            
-                                </select>
-                                </textarea><br><br>
-                            
-                                <span class="text-danger">
-
-                                    <?php
-
-
-                                    if (isset($erreurs["antecedent"]) AND !empty($erreurs["antecedent"])) {
-                                        echo $erreurs["antecedent"];
-                                    }
-
-                                    ?>
-
-                                </span>
-                            
-                            
-                            </div>
-
-                            <div class='col-sm-12 mb-3'>
-
-                                <b>Liste des médicaments en cours de traitement</b><br>
-                                <textarea rows="5" cols="50" class='form-control' value="<?= (isset($donnees["liste_med"]) AND !empty($donnees["liste_med"])) ? $donnees["liste_med"] : ""; ?>">
-                                </textarea><br><br>
-
-                            </div>
-                        </div>    
+                        </div>
                         
+                        
+
                     </div>
 
                     <div class="row mt-3 card-footer">

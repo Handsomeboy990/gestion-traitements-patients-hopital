@@ -47,21 +47,15 @@ if($user_connected){
 
 <body>
 
-    <div class="container bg-transparent">
+    <div class="container-fluid bg-transparent col-6 mt-xl-5">
 
         <div class="card card-outline card-primary bg-transparent">
             
-            <div class="col-md-6" style="width: 50%;margin: auto;">
+            <div class="col-md-6 w-50 m-auto"> 
 
-                <div class="card-header text-center">
-
-                    <a href="connexion.php">
-
-                        <img class="w-25 img-fluid rounded-circle" src="public/img/logo.png" alt="Logo du centre de santé">
-
-                    </a>
-
-                </div>
+                <a href="inscription.php" class="d-flex justify-content-center">
+                    <img class="w-50 img-fluid rounded-circle" src="public/img/logo.png" alt="Logo du centre de santé">
+                </a>         
 
             </div>
 
@@ -113,7 +107,7 @@ if($user_connected){
 
             <div class="card-body">
 
-                <h2 class="text-center mt-4 mb-3 titre_authentification">SE CONNECTER</h2>
+                <h2 class="text-center mb-3 titre_authentification">SE CONNECTER</h2>
                 
                 <form action="connexion-traitement.php" method="post"  class="bord-formulaire mt-3 border border-3" novalidate>
 
@@ -246,13 +240,13 @@ if($user_connected){
                         <!-- /.col -->
                         <div class="col-6">
 
-                            <button type="submit" class="btn btn-primary btn-block rounded-pill">Connexion</button>
+                            <button type="submit" class="btn btn-primary btn-block rounded">Connexion</button>
 
                         </div>
 
                     </div>
 
-                    <div class="d-flex justify-content-end mb-4">
+                    <div class="d-flex justify-content-end m-3">
 
                    
                         <a href="#" class="lien_mdp">Mot de passe oublié?</a>
