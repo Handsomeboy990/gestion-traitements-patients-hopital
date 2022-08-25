@@ -223,7 +223,7 @@ function router()
 
     } else {
 
-        include "default-dashboard.php";
+        include "patients/liste-patient.php.php";
 
     }
 }
@@ -309,5 +309,38 @@ function check_if_patient_exist(string $nom_patient, string $prenom_patient){
     }
 
     return $check_if_patient_exist;
+
+}
+
+
+/**
+ * Cette fonction permet de récupérer la liste des patients de la base de donnée.
+ *
+ * @return array $liste_patient La liste des patients.
+ */
+function get_liste_patient(): array
+{
+
+    $liste_patient = array();
+
+    $db = connect_db();
+
+    // Ecriture de la requête
+    $requette = 'SELECT * FROM patient';
+
+    // Préparation
+    $verifier_liste_patient = $db->prepare($requette);
+
+    // Exécution ! La recette est maintenant en base de données
+    $resultat = $verifier_liste_patient->execute();
+
+    if ($resultat) {
+
+        $liste_patient = $verifier_liste_patient->fetchAll(PDO::FETCH_ASSOC);
+
+    }
+
+
+    return $liste_patient;
 
 }

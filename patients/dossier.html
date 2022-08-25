@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="images/logo.png" type="image/x-icon">
+    <title> Dossier-patient | Gestion de traitement des patients</title>
+
+    <!-- lien fontawesome -->
+    <link rel="stylesheet" href="css/fontawesome/css/all.min.css">
+
+    <!-- lien fichier css -->
+    <link rel="stylesheet" href="css/style.css">
+   
+    <!-- lien boxicons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+    
+    <!-- lien bootstrap -->
+    <link rel="stylesheet" href="css/bootstrap/css/bootstrap.min.css">
+
+</head>
+
+
+<body id="body-pd" style="height: max-content;">
+
+    <header class="header" id="header">
+        <div class="header_toggle"> 
+            <i class='bx bx-menu' id="header-toggle"></i> 
+        </div>
+        
+        <div class="d-flex ">         
+            <span class="mr-2 d-flex d-lg-inline text-gray-600 small align-self-center" style="margin-right: 10px; color: grey;">Jane Doe</span>
+             <img src="images/janedoe.jpg"  class="header_img"> 
+        </div>
+    </header>
+    <div class="l-navbar" id="nav-bar">
+        <nav class="nav">
+            <div> 
+                <a class="sidebar-brand d-flex align-items-center justify-content-center conteneur-img-dash nav_link" style="left: 40px;" href="tableau_de_bord.html">
+                    <div class="sidebar-brand-icon">
+                        <img class="image-dashboard img-fluid" src="images/logo.png" alt="Logo du centre de santé">
+                    </div>
+                </a>
+
+                <hr class="sidebar-divider">
+
+                <div class="nav_list"> 
+                    <a href="tableau_de_bord.html" class="nav_link"> 
+                        <i class='fas fa-fw fa-home nav_icon'></i> 
+                        <span class="nav_name">Accueil</span> 
+                    </a> 
+                    <a href="agenda.html" class="nav_link"> 
+                        <i class='fas fa-fw fa-calendar-day nav_icon'></i> 
+                        <span class="nav_name">Agenda</span> 
+                    </a> 
+                    <a href="patient.html" class="nav_link active"> 
+                        <i class='fas fa-fw fa-user nav_icon'></i> 
+                        <span class="nav_name">Patients</span> 
+                    </a> 
+                    <a href="consultation.html" class="nav_link"> 
+                        <i class='fas fa-fw fa-book-medical nav_icon'></i> 
+                        <span class="nav_name">Consultations</span> 
+                    </a> 
+                    <a href="statistique.html" class="nav_link"> 
+                        <i class='fas fa-fw fa-chart-pie nav_icon'></i> 
+                        <span class="nav_name">Statistiques</span> 
+                    </a> 
+                
+                </div>
+            </div> <a href="connexion.html" class="nav_link"> <i class='bx bx-log-out nav_icon'></i> <span class="nav_name">Déconnexion</span> </a>
+        
+            <!-- footer-->
+
+            <footer class="sticky-footer">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto" style="font-size: small; color: rgba(0, 0, 0, 0.932);">
+                        <span>Copyright &copy; 2022 Medical Team, tous droits réservés.</span>
+                    </div>
+                </div>
+            </footer> 
+
+        </nav>   
+    </div>
+    
+    <!-- partie principale-->
+
+    <div id="contenu-partie-droite" class="d-flex flex-column">
+        <div class="height-100 contenu-principal row align-items-start">
+            <div id="contenu" style="margin-top: 50px; padding-top: 20px;">
+
+                <div class="container-fluid">
+
+                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                        
+                        <div class="w-50 d-flex">
+                            
+                            <div class="w-25">
+                                <h1 class="h3 mb-0 text-gray-800">
+                                    <i class="fas fa-fw fa-user"></i>
+                                    <span>Patient</span>  
+                                </h1>
+                            </div>
+                            
+                            <div class="w-50 d-flex align-self-end" style="padding-left: 10px; color: #c4c4c4;">
+                                    
+                                <span>Dossier</span>                                
+                            
+                            </div>
+                        
+                            
+                        </div>
+
+                        <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb" class="w-50 d-flex justify-content-end">
+                            <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><i class="fas fa-fw fa-home"></i><a href="tableau_de_bord.html">Accueil</a></li>
+                            <li class="breadcrumb-item"><i class="fas fa-fw fa-user"></i><a href="patient.html">Patients</a></li>
+                            <li class="breadcrumb-item"><i class="fas fa-fw fa-folder-open"></i><a href="dossier.html">Dossier patient</a></li>
+                            </ol>
+                        </nav>
+                    </div>
+                    <hr style="height: 0.4rem; color:#668ea1; opacity: inherit;"> 
+                    <div class="container mt-5">
+
+                        <div class="row">
+
+                            <div class="col-md-8 col-lg-6 d-flex">
+                                <i class="fas fa-fw fa-tags nav_icon d-flex align-self-baseline fs-3"></i>
+                                <h2>Détail dossier</h2>
+                            </div>
+                            
+                            <div class="d-sm-flex align-items-center justify-content-between mb-4">
+
+                                <div class="col-sm-8 col-lg-4 d-flex align-items-baseline justify-content-between mt-4 mb-3 w-100" style="color: rgb(43, 39, 39);">
+                                    <h5 style="width: 30%;">Numdossier</h5>
+                                    <span class="d-flex justify-content-start" style="width: 70%;">141/22</span>
+                                </div>
+                            
+                            </div>
+
+                            <div class="d-sm-flex align-items-center justify-content-between mb-4">
+
+                                <div class="col-sm-8 col-lg-4 d-flex align-items-baseline justify-content-between mt-4 mb-3 w-100" style="color: rgb(43, 39, 39);">
+                                    <h5 style="width: 30%;">Nompatient</h5>
+                                    <span class="d-flex justify-content-start" style="width: 70%;">John Doe</span>
+                                </div>
+                            
+                            </div>
+                            
+                            <div class="d-sm-flex align-items-center justify-content-between mb-4">
+
+                                <div class="col-sm-8 col-lg-4 d-flex align-items-baseline justify-content-between mb-3 w-100" style="color: rgb(43, 39, 39);">
+                                    <h5 style="width: 30%;">Sexepatient</h5>
+                                    <span class="d-flex justify-content-start" style="width: 70%;">Masculin</span>
+                                </div>
+                            </div>
+                            
+                            <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                            
+                                <div class="col-sm-8 col-lg-4 d-flex align-items-baseline justify-content-between mb-3 w-100" style="color: rgb(43, 39, 39);">
+                                    <h5 style="width: 30%;">Nummal</h5>
+                                    <span class="d-flex justify-content-start" style="width: 70%;">0025</span>
+                                </div>
+                            </div>
+                            
+                            <div class="d-sm-flex align-items-center justify-content-between mb-4">
+
+                                <div class="col-sm-8 col-lg-4 d-flex align-items-baseline justify-content-between mb-3 w-100" style="color: rgb(43, 39, 39);">
+                                    <h5 style="width: 30%;">Nommal</h5>
+                                    <span class="d-flex justify-content-start" style="width: 70%;">Problèmes de vision</span>
+                                </div>
+                            </div>
+                            
+                            <div class="d-sm-flex align-items-center justify-content-between mb-4">
+
+                                <div class="col-sm-8 col-lg-4 d-flex align-items-baseline justify-content-between mb-3 w-100" style="color: rgb(43, 39, 39);">
+                                    <h5 style="width: 30%;">Nummed</h5>
+                                    <span class="d-flex justify-content-start" style="width: 70%;">32014</span>
+                                </div>
+                            </div>
+                            
+                            <div class="d-sm-flex align-items-center justify-content-between mb-4">
+
+                                <div class="col-sm-8 col-lg-4 d-flex align-items-baseline justify-content-between mb-3 w-100" style="color: rgb(43, 39, 39);">
+                                    <h5 style="width: 30%;">Nommed</h5>
+                                    <span class="d-flex justify-content-start" style="width: 70%;">Visuel</span>
+                                </div>
+                            </div>
+                            
+                            <div class="d-sm-flex align-items-center justify-content-between mb-4">
+
+                                <div class="col-sm-8 col-lg-4 d-flex align-items-baseline justify-content-between mb-3 w-100" style="color: rgb(43, 39, 39);">
+                                    <h5 style="width: 30%;">Numord</h5>
+                                    <span class="d-flex justify-content-start" style="width: 70%;">00000</span>
+                                </div>
+
+                            </div>
+
+                            <div class="d-sm-flex align-items-center justify-content-between mb-4">
+
+                                <div class="col-sm-8 col-lg-4 d-flex align-items-baseline justify-content-between mb-3 w-100" style="color: rgb(43, 39, 39);">
+                                    <h5 style="width: 30%;">Datord</h5>
+                                    <span class="d-flex justify-content-start" style="width: 70%;">24/03/22</span>
+                                </div>
+
+                            </div>
+
+                            <div class="d-sm-flex align-items-center justify-content-between mb-4">
+
+                                <div class="col-sm-8 col-lg-4 d-flex align-items-baseline justify-content-between mb-3 w-100" style="color: rgb(43, 39, 39);">
+                                    <h5 style="width: 30%;">Matmed</h5>
+                                    <span class="d-flex justify-content-start" style="width: 70%;">00005</span>
+                                </div>
+
+                            </div>
+
+                            <div class="d-sm-flex align-items-center justify-content-between mb-4">
+
+                                <div class="col-sm-8 col-lg-4 d-flex align-items-baseline justify-content-between mb-3 w-100" style="color: rgb(43, 39, 39);">
+                                    <h5 style="width: 30%;">Nommedecin</h5>
+                                    <span class="d-flex justify-content-start" style="width: 70%;">Dr Larry</span>
+                                </div>
+
+                            </div>
+
+                            <div class="d-sm-flex align-items-center justify-content-between mb-4">
+
+                                <div class="col-sm-8 col-lg-4 d-flex align-items-baseline justify-content-between mb-3 w-100" style="color: rgb(43, 39, 39);">
+                                    <h5 style="width: 30%;">Posologie</h5>
+                                    <span class="d-flex justify-content-start" style="width: 70%;">-</span>
+                                </div>
+
+                            </div>
+
+                            <div class="d-sm-flex align-items-center justify-content-between mb-4">
+
+                                <div class="col-sm-8 col-lg-4 d-flex align-items-baseline justify-content-between mb-3 w-100" style="color: rgb(43, 39, 39);">
+                                    <h5 style="width: 30%;">Numtrait</h5>
+                                    <span class="d-flex justify-content-start" style="width: 70%;">00000</span>
+                                </div>
+
+                            </div>
+
+                            <div class="d-sm-flex align-items-center justify-content-between mb-4">
+
+                                <div class="col-sm-8 col-lg-4 d-flex align-items-baseline justify-content-between mb-3 w-100" style="color: rgb(43, 39, 39);">
+                                    <h5 style="width: 30%;">Dattrait</h5>
+                                    <span class="d-flex justify-content-start" style="width: 70%;">24/03/22</span>
+                                </div>
+
+                            </div>
+
+                            <div class="d-sm-flex align-items-center justify-content-between mb-4">
+
+                                <div class="col-sm-8 col-lg-4 d-flex align-items-baseline justify-content-between mb-3 w-100" style="color: rgb(43, 39, 39);">
+                                    <h5 style="width: 30%;">Codsoin</h5>
+                                    <span class="d-flex justify-content-start" style="width: 70%;">00000</span>
+                                </div>
+
+                            </div>
+
+                            <div class="d-sm-flex align-items-center justify-content-between mb-4">
+
+                                <div class="col-sm-8 col-lg-4 d-flex align-items-baseline justify-content-between mb-3 w-100" style="color: rgb(43, 39, 39);">
+                                    <h5 style="width: 30%;">Libsoin</h5>
+                                    <span class="d-flex justify-content-start" style="width: 70%;">-</span>
+                                </div>
+
+                            </div>
+
+                            <div class="d-sm-flex align-items-center justify-content-between mb-4">
+
+                                <div class="col-sm-8 col-lg-4 d-flex align-items-baseline justify-content-between mb-3 w-100" style="color: rgb(43, 39, 39);">
+                                    <h5 style="width: 30%;">Coutsoin</h5>
+                                    <span class="d-flex justify-content-start" style="width: 70%;">-</span>
+                                </div>
+
+                            </div>
+
+                            <div class="d-sm-flex align-items-center justify-content-between mb-4">
+
+                                <div class="col-sm-8 col-lg-4 d-flex align-items-baseline justify-content-between mb-3 w-100" style="color: rgb(43, 39, 39);">
+                                    <h5 style="width: 30%;">Datrdv</h5>
+                                    <span class="d-flex justify-content-start" style="width: 70%;">27/03/22</span>
+                                </div>
+
+                            </div>
+
+                            <div class="d-sm-flex align-items-center justify-content-between mb-4">
+
+                                <div class="col-sm-8 col-lg-4 d-flex align-items-baseline justify-content-between mb-3 w-100" style="color: rgb(43, 39, 39);">
+                                    <h5 style="width: 30%;">Numrdv</h5>
+                                    <span class="d-flex justify-content-start" style="width: 70%;">00000</span>
+                                </div>
+
+                            </div>
+
+                        </div>
+                </div>    
+            
+            </div>
+        </div>
+
+    </div>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">Ajout d'examen complémentaire</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            
+            <form>
+                <div class="mb-3">
+                  <label for="exampleInputDate" class="form-label">Date</label>
+                  <input type="date" class="form-control" id="exampleInputDate" aria-describedby="dateHelp">
+                  <div id="dateHelp" class="form-text"></div>
+                </div>
+                <div class="mb-3">
+                  <label for="exampleInputText" class="form-label">Nom d'examen</label>
+                  <input type="text" class="form-control" id="exampleInputText">
+                </div>
+            </form>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Annuler</button>
+          <button type="button" class="btn btn-primary"><i class="fas fa-fw fa-plus"></i>Ajouter</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <!--Scripts -->
+
+    <script src="css/sidebar.js"></script>
+    
+    <script src="css/bootstrap/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

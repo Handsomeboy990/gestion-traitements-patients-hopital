@@ -1,3 +1,10 @@
+<?php
+$liste_patient = get_liste_patient();
+?>
+
+
+
+
 <div class="container-fluid">
 
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
@@ -60,14 +67,17 @@
 
                             <div class="col-sm-12 col-md-6">
 
-                                <div id="dataTable_filter" class="dataTables_filter">
-
-                                    <label style="width: 100%; display: flex;align-content: space-between; justify-content: end;">
-                                        <span style="width: 20%;">Rechercher:</span>
-                                        <input class="form-control form-control-sm w-50" type="search" placeholder="Nom patient" aria-controls="dataTable">
-                                    </label>
-
+                            <div class="card-tools d-flex justify-content-end">
+                                <div class="input-group input-group-sm" style="width: 150px;">
+                                    <input type="text" name="table_search" class="form-control float-right"
+                                        placeholder="Recherche">
+                                    <div class="input-group-append">
+                                        <button type="submit" class="btn btn-default">
+                                            <i class="fas fa-search"></i>
+                                        </button>
+                                    </div>
                                 </div>
+                        </div>
 
                             </div>
 
@@ -79,96 +89,95 @@
                 
                             <div class="col-sm-12">   
                                 
+
+
+                            <?php if (isset($liste_patient) && !empty($liste_patient)) {
+
+                                ?>
+
                                 <table class="table table-hover table-success table-striped  border-primary  dataTable" role="grid" aria-describedby="dataTable_info" style="width: 100%;" width="100%" cellspacing="0">
-                                    <thead>
-                                        <tr role="row">
-                                            <th scope="col" class="col-2 text-center">N°dossier</th>
-                                            <th scope="col" class="col-2 text-center">Nom</th>
-                                            <th scope="col" class="col-2 text-center">Prénom</th>
-                                            <th scope="col" class="col-2 text-center">Age</th>
-                                            <th scope="col" class="col-2 text-center">Sexe</th>
-                                            <th scope="col" class="col-2 text-center">Actions</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr class="odd">
-                                            <th scope="row"  class="text-center">143/22</th>
-                                            <td class="text-center sorting_1">Eskutt</td>
-                                            <td class="text-center sorting_1">Larry</td>
-                                            <td class="text-center sorting_1">44</td>
-                                            <td class="text-center sorting_1">M</td>
-                                            <td class="text-center">
-                                                <a href="#" class="btn btn-danger mb-3" data-bs-toggle="modal" data-bs-target="#mt-rdv-patient"><i class="fas fa-fw fa-calendar-alt"></i></a>
-                                                <a href="dossier.html" class="btn btn-success mb-3"><i class="fas fa-fw fa-eye"></i></a>
-                                                <a href="dossier.html" class="btn btn-primary mb-3"><i class="fas fa-fw fa-edit"></i></a>                                                                
-                                            </td>
-                                        </tr>
-                                        <tr class="odd">
-                                            <th scope="row"  class="text-center">144/22</th>
-                                            <td class="text-center sorting_1">Mike</td>
-                                            <td class="text-center sorting_1">Mikey</td>
-                                            <td class="text-center sorting_1">92</td>
-                                            <td class="text-center sorting_1">M</td>
-                                            <td class="text-center">
-                                                <a href="#" class="btn btn-danger mb-3" data-bs-toggle="modal" data-bs-target="#mt-rdv-patient"><i class="fas fa-fw fa-calendar-alt"></i></a>
-                                                <a href="dossier.html" class="btn btn-success mb-3"><i class="fas fa-fw fa-eye"></i></a>
-                                                <a href="dossier.html" class="btn btn-primary mb-3"><i class="fas fa-fw fa-edit"></i></a>                                                                
-                                            </td>
-                                        </tr>
-                                        <tr class="odd">
-                                            <th scope="row"  class="text-center">145/22</th>
-                                            <td class="text-center sorting_1">Djangoni</td>
-                                            <td class="text-center sorting_1">Madélai</td>
-                                            <td class="text-center sorting_1">2</td>
-                                            <td class="text-center sorting_1">F</td>
-                                            <td class="text-center">
-                                                <a href="#" class="btn btn-danger mb-3" data-bs-toggle="modal" data-bs-target="#mt-rdv-patient"><i class="fas fa-fw fa-calendar-alt"></i></a>
-                                                <a href="dossier.html" class="btn btn-success mb-3"><i class="fas fa-fw fa-eye"></i></a>
-                                                <a href="dossier.html" class="btn btn-primary mb-3"><i class="fas fa-fw fa-edit"></i></a>                                                                
-                                            </td>
-                                        </tr>
-                                        <tr class="odd">
-                                            <th scope="row"  class="text-center">146/22</th>
-                                            <td class="text-center sorting_1">Jolie</td>
-                                            <td class="text-center sorting_1">Joliette</td>
-                                            <td class="text-center sorting_1">38</td>
-                                            <td class="text-center sorting_1">F</td>
-                                            <td class="text-center">
-                                                <a href="#" class="btn btn-danger mb-3" data-bs-toggle="modal" data-bs-target="#mt-rdv-patient"><i class="fas fa-fw fa-calendar-alt"></i></a>
-                                                <a href="dossier.html" class="btn btn-success mb-3"><i class="fas fa-fw fa-eye"></i></a>
-                                                <a href="dossier.html" class="btn btn-primary mb-3"><i class="fas fa-fw fa-edit"></i></a>                                                                
-                                            </td>
-                                        </tr>
-                                        <tr class="odd">
-                                            <th scope="row"  class="text-center">147/22</th>
-                                            <td class="text-center sorting_1">Magengo</td>
-                                            <td class="text-center sorting_1">Guttembert</td>
-                                            <td class="text-center sorting_1">11</td>
-                                            <td class="text-center sorting_1">M</td>
-                                            <td class="text-center">
-                                                <a href="#" class="btn btn-danger mb-3" data-bs-toggle="modal" data-bs-target="#mt-rdv-patient"><i class="fas fa-fw fa-calendar-alt"></i></a>
-                                                <a href="dossier.html" class="btn btn-success mb-3"><i class="fas fa-fw fa-eye"></i></a>
-                                                <a href="dossier.html" class="btn btn-primary mb-3"><i class="fas fa-fw fa-edit"></i></a>                                                                
-                                            </td>
-                                        </tr>
-                                        <tr class="odd">
-                                            <th scope="row"  class="text-center">148/22</th>
-                                            <td class="text-center sorting_1">Boy</td>
-                                            <td class="text-center sorting_1">Handsome</td>
-                                            <td class="text-center sorting_1">24</td>
-                                            <td class="text-center sorting_1">M</td>
-                                            <td class="text-center">
-                                                <a href="#" class="btn btn-danger mb-3" data-bs-toggle="modal" data-bs-target="#mt-rdv-patient"><i class="fas fa-fw fa-calendar-alt"></i></a>
-                                                <a href="dossier.html" class="btn btn-success mb-3"><i class="fas fa-fw fa-eye"></i></a>
-                                                <a href="dossier.html" class="btn btn-primary mb-3"><i class="fas fa-fw fa-edit"></i></a>                                                                
-                                            </td>
-                                        </tr>                                                                                                                                        
-                                    </tbody>
-                                </table>
+                                <thead>
+                                <tr role="row">
+                                    <th scope="col" class="col-2 text-center">N°dossier</th>
+                                    <th scope="col" class="col-2 text-center">Nom</th>
+                                    <th scope="col" class="col-2 text-center">Prénoms</th>
+                                    <th scope="col" class="col-2 text-center">Sexe</th>
+                                    <th scope="col" class="col-2 text-center">Allergies</th>
+                                    <th scope="col" class="col-2 text-center">Actions</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <?php
+
+                                foreach ($liste_patient as $patient) {
+                                    ?>
+                                    <tr class="odd">
+                                        <td  scope="row"  class="text-center"><?= $patient["numdossier"]; ?></td>
+                                        <td class="text-center sorting_1"><?= $patient["nompatient"]; ?></td>
+                                        <td class="text-center sorting_1"><?= $patient["prenompatient"]; ?></td>
+                                        <td class="text-center sorting_1"><?= $patient["sexepatient"]; ?></td>
+                                        <td class="text-center sorting_1"><?= $patient["allergie"]; ?></td> 
+                                        <td class="text-center">
+                                            <a href="#" class="btn btn-primary mb-3" data-toggle="modal" data-target="#rdvpatient-<?= $patient["numdossier"]; ?>"><i class="fas fa-fw fa-calendar-alt"></i></a>
+                                            <a href="?requette=dossierpatient&numdossier=<?= $patient["numdossier"]; ?>" class="btn btn-success mb-3"><i class="fas fa-fw fa-eye"></i></a>
+                                            <a href="?requette=modifierpatient&numdossier=<?= $patient["numdossier"]; ?>" class="btn btn-warning mb-3"><i class="fas fa-fw fa-edit"></i></a> 
+                                        </td>
+                                    </tr>
+                                    <div class="modal fade" id="rdvpatient-<?= $patient["numdossier"]; ?>"
+                                         style="display: none;" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h4 class="modal-title">Ajouter RDV <?= $patient["nompatient"]; ?></h4>
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                            aria-label="Close">
+                                                        <span aria-hidden="true">×</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <p>Confirmer RDV <?= $patient["nompatient"]; ?> ?</p>
+                                                </div>
+                                                <div class="modal-footer ">
+
+                                                    <a href="?requette=supprimer-patient&num-patient=<?= $patient["numdossier"]; ?>"
+                                                       class="btn btn-danger">Oui</a>
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal">
+                                                        Annuler
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <!-- /.modal-content -->
+                                        </div>
+                                        <!-- /.modal-dialog -->
+                                    </div>
+                                    <?php
+                                }
+
+                                ?>
+
+                                </tbody>
+                            </table>
+
+                            <?php
+                            } else {
+
+                                echo "Aucun patient n'a été trouvé.";
+
+                            }
+                            ?>
 
                             </div>     
                 
                         </div>
+
+
+                    <div class="card-body table-responsive p-0">
+
+                        
+
+                    </div>
+
+
 
                         <div class="row">
 
@@ -212,6 +221,10 @@
                     </div>    
                 </div>        
             
+            </div>
+    
+    
+        </div>          
+    </div>    
         
-    </div>
-</div>
+                    </div>
