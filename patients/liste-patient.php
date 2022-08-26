@@ -99,8 +99,8 @@ $liste_patient = get_liste_patient();
                                 <thead>
                                 <tr role="row">
                                     <th scope="col" class="col-2 text-center">N°dossier</th>
-                                    <th scope="col" class="col-2 text-center">Nom</th>
                                     <th scope="col" class="col-2 text-center">Prénoms</th>
+                                    <th scope="col" class="col-2 text-center">Nom</th>
                                     <th scope="col" class="col-2 text-center">Sexe</th>
                                     <th scope="col" class="col-2 text-center">Allergies</th>
                                     <th scope="col" class="col-2 text-center">Actions</th>
@@ -113,8 +113,8 @@ $liste_patient = get_liste_patient();
                                     ?>
                                     <tr class="odd">
                                         <td  scope="row"  class="text-center"><?= $patient["numdossier"]; ?></td>
-                                        <td class="text-center sorting_1"><?= $patient["nompatient"]; ?></td>
                                         <td class="text-center sorting_1"><?= $patient["prenompatient"]; ?></td>
+                                        <td class="text-center sorting_1"><?= $patient["nompatient"]; ?></td>
                                         <td class="text-center sorting_1"><?= $patient["sexepatient"]; ?></td>
                                         <td class="text-center sorting_1"><?= $patient["allergie"]; ?></td> 
                                         <td class="text-center">
