@@ -79,4 +79,130 @@
             </div>
         </div>
     </div>
+
+    <div class="row">
+
+        <div class="col-xl-4 col-md-6 mb-4">
+            <div class="card border-left-primary shadow h-100 ">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-3 fs-3 carte">Traitements</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-bed fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="d-grid gap-2">
+                    <a href="?requette=liste-traitement" class="btn btn-primary">Aller
+                        <span><i class="fas fa-fw fa-arrow-circle-right"></i></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-4 col-md-6 mb-4">
+            <div class="card border-left-danger shadow h-100 ">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-3 fs-4 carte">Soins</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-hand-holding-medical fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="d-grid gap-2">
+                    <a href="?requette=liste-soin" class="btn btn-danger">Aller
+                        <span><i class="fas fa-fw fa-arrow-circle-right"></i></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-4 col-md-6 mb-4">
+            <div class="card border-left-success shadow h-100 ">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-3 fs-4 carte">Maladies</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-disease fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="d-grid gap-2">
+                    <a href="?requette=liste-maladie" class="btn btn-success">Aller
+                        <span><i class="fas fa-fw fa-arrow-circle-right"></i></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+
+        <div class="col-xl-4 col-md-6 mb-4">
+            <div class="card border-left-primary shadow h-100 ">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-3 fs-3 carte">Médicaments</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-tablets fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="d-grid gap-2">
+                    <a href="?requette=liste-medicament" class="btn btn-primary">Aller
+                        <span><i class="fas fa-fw fa-arrow-circle-right"></i></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-4 col-md-6 mb-4">
+            <div class="card border-left-danger shadow h-100 ">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-3 fs-4 carte">Médecins</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-hospital-user fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="d-grid gap-2">
+                    <a href="?requette=liste-medecin" class="btn btn-danger">Aller
+                        <span><i class="fas fa-fw fa-arrow-circle-right"></i></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-4 col-md-6 mb-4">
+            <div class="card border-left-success shadow h-100 ">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-3 fs-4 carte">Statistiques</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-chart-pie fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="d-grid gap-2">
+                    <a href="?requette=statistique" class="btn btn-success">Aller
+                        <span><i class="fas fa-fw fa-arrow-circle-right"></i></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

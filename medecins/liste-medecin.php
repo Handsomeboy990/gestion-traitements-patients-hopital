@@ -124,7 +124,7 @@ $liste_medecins = get_liste_medecins();
                             <?php
                             } else {
 
-                                echo "Aucun patient n'a été trouvé.";
+                                echo "Aucun médecin n'a été trouvé.";
 
                             }
                             ?>
@@ -189,5 +189,4 @@ $liste_medecins = get_liste_medecins();
     
         </div>          
     </div>    
-        
-                    </div>
+</div>

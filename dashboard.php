@@ -193,6 +193,102 @@ if (!$user_connected) {
 							</li>
 
 							<li class="nav-item">
+								<a href="?requette=liste-maladie" class="nav-link">
+									<i class='fas fa-fw fa-disease nav_icon'></i>
+									<p>
+										Maladies
+										<i class="right fas fa-angle-left"></i>
+									</p>
+								</a>
+								<ul class="nav nav-treeview">
+									<li class="nav-item">
+										<a href="?requette=liste-maladie" class="nav-link">
+											<i class='fas fa-fw fa-list nav_icon'></i>
+											<p>Liste des maladies</p>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="?requette=ajout-maladie" class="nav-link">
+											<i class='fas fa-fw fa-book-medical nav_icon'></i>
+											<p>Ajouter une maladie</p>
+										</a>
+									</li>
+								</ul>
+							</li>
+
+							<li class="nav-item">
+								<a href="?requette=liste-medicament" class="nav-link">
+									<i class='fas fa-fw fa-tablets nav_icon'></i>
+									<p>
+										Médicaments
+										<i class="right fas fa-angle-left"></i>
+									</p>
+								</a>
+								<ul class="nav nav-treeview">
+									<li class="nav-item">
+										<a href="?requette=liste-medicament" class="nav-link">
+											<i class='fas fa-fw fa-list nav_icon'></i>
+											<p>Liste des médicaments</p>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="?requette=ajout-medicament" class="nav-link">
+											<i class='fas fa-fw fa-pills nav_icon'></i>
+											<p>Ajouter un médicament</p>
+										</a>
+									</li>
+								</ul>
+							</li>
+
+							<li class="nav-item">
+								<a href="?requette=liste-soin" class="nav-link">
+									<i class='fas fa-fw fa-hand-holding-medical nav_icon'></i>
+									<p>
+										Soins
+										<i class="right fas fa-angle-left"></i>
+									</p>
+								</a>
+								<ul class="nav nav-treeview">
+									<li class="nav-item">
+										<a href="?requette=liste-soin" class="nav-link">
+											<i class='fas fa-fw fa-list nav_icon'></i>
+											<p>Liste des soins</p>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="?requette=ajout-soin" class="nav-link">
+											<i class='fas fa-fw fa-hand-holding-medical nav_icon'></i>
+											<p>Ajouter un soin</p>
+										</a>
+									</li>
+								</ul>
+							</li>
+
+							<li class="nav-item">
+								<a href="?requette=liste-traitement" class="nav-link">
+									<i class='fas fa-fw fa-bed nav_icon'></i>
+									<p>
+										Traitements
+										<i class="right fas fa-angle-left"></i>
+									</p>
+								</a>
+								<ul class="nav nav-treeview">
+									<li class="nav-item">
+										<a href="?requette=liste-traitement" class="nav-link">
+											<i class='fas fa-fw fa-list nav_icon'></i>
+											<p>Liste des traitements</p>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="?requette=ajout-traitement" class="nav-link">
+											<i class='fas fa-fw fa-book-medical nav_icon'></i>
+											<p>Ajouter un traitement</p>
+										</a>
+									</li>
+								</ul>
+							</li>
+
+							<li class="nav-item">
 								<a href="?requette=consultations" class="nav-link">
 									<i class='fas fa-fw fa-book-medical nav_icon'></i>
 									<p>

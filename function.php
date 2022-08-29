@@ -241,7 +241,27 @@ function router()
                     include "medecins/dossier-medecin.php";
                     break;
                     
-                    
+               
+            case "liste-maladie":
+                include "maladies/liste-maladie.php";
+                break;
+
+                case "ajout-maladie":
+                    include "maladies/ajout-maladie.php";
+                    break;
+
+                case "ajout-maladie-traitement":
+                    include "maladies/ajout-maladie-traitement.php";
+                    break;
+    
+                case "maladie-dashboard":
+                    include "maladies/maladie-dashboard.php";
+                    break;
+            
+                case "dossier-maladie":
+                    include "maladies/dossier-maladie.php";
+                    break;
+               
             case "liste-consultation":
                 include "consultations/liste-consultation.php";
                 break;
@@ -519,5 +539,152 @@ function get_medecin_by_matmed(int $matmed): array
     }
 
     return $medecin;
+
+}
+
+
+
+
+
+
+
+/**
+ * Cett fonction permet  d'ajouter une maladie à la base de données.
+ *
+ * @param string $nommal Le nom du medecin.
+ *
+ * @return bool $ajout_maladie Le resultat de l'ajout de la maladie.
+ */
+function ajout_maladie(string $nommal): bool
+{
+
+    $ajout_maladie = false;
+
+    if (isset($nommal) && !empty($nommal)) {
+
+        $db = connect_db();
+
+        // Ecriture de la requête
+        $requette = 'INSERT INTO maladie (nommal) VALUES (:nommal);';
+
+        // Préparation
+        $inserer_maladie = $db->prepare($requette);
+
+        // Exécution ! La recette est maintenant en base de données
+        $resultat = $inserer_maladie->execute([
+            'nommal' => $nommal
+        ]);
+
+
+        if ($resultat) {
+            $ajout_maladie = true;
+        }
+
+    }
+
+    return $ajout_maladie;
+
+}
+
+function check_if_maladie_exist(string $nommal): bool
+{
+
+    $check_if_maladie_exist = false;
+
+    if (isset($nommal) && !empty($nommal)) {
+
+        $db = connect_db();
+
+        // Ecriture de la requête
+        $requette = 'SELECT count(*) as nbr_maladie FROM maladie WHERE nommal = :nommal;';
+
+        // Préparation
+        $verifier_maladie = $db->prepare($requette);
+
+        // Exécution ! La recette est maintenant en base de données
+        $resultat = $verifier_maladie->execute([
+            'nommal' => $nommal
+        ]);
+
+        if ($resultat) {
+
+            $check_if_maladie_exist = ($verifier_maladie->fetch(PDO::FETCH_ASSOC)["nbr_maladie"] > 0) ? true : false;
+
+        }
+
+    }
+
+    return $check_if_maladie_exist;
+
+}
+
+
+
+
+
+/**
+ * Cette fonction permet de récupérer la liste des maladies de la base de donnée.
+ *
+ * @return array $liste_medecins La liste des maladies.
+ */
+function get_liste_maladies(): array
+{
+
+    $liste_maladies = array();
+
+    $db = connect_db();
+
+    // Ecriture de la requête
+    $requette = 'SELECT * FROM maladie';
+
+    // Préparation
+    $verifier_liste_maladies = $db->prepare($requette);
+
+    // Exécution ! La recette est maintenant en base de données
+    $resultat = $verifier_liste_maladies->execute();
+
+    if ($resultat) {
+
+        $liste_maladies = $verifier_liste_maladies->fetchAll(PDO::FETCH_ASSOC);
+
+    }
+
+
+    return $liste_maladies;
+
+}
+
+/**
+ * Cette fonction permet de récupérer une maladie via son numéro d'identification.
+ *
+ * @param int $nummal L'immatriculation du médecin.
+ *
+ * @return array $maladie Le médecin.
+ */
+function get_maladie_by_nummal(int $nummal): array
+{
+
+    $maladie = array();
+
+    $db = connect_db();
+
+    // Ecriture de la requête
+    $requette = 'SELECT * FROM maladie WHERE nummmal = :nummal ';
+
+    // Préparation
+    $verifier_maladie = $db->prepare($requette);
+
+    // Exécution ! La recette est maintenant en base de données
+    $resultat = $verifier_maladie->execute([
+        "nummal" => $nummal
+    ]);
+
+    if ($resultat) {
+
+        $maladie = $verifier_maladie->fetchAll(PDO::FETCH_ASSOC);
+
+    }
+
+    return $maladie;
 
 }
