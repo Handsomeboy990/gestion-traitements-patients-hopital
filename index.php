@@ -42,7 +42,7 @@ if (!$user_connected) {
 
 	    <!-- Google Font: Source Sans Pro -->
 	    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-	   
+
 
 
 	</head>
@@ -162,6 +162,31 @@ if (!$user_connected) {
 										<a href="?requette=inscription-patient" class="nav-link">
 											<i class='fas fa-fw fa-user-plus nav_icon'></i>
 											<p>Ajouter un patient</p>
+										</a>
+									</li>
+								</ul>
+							</li>
+
+
+							<li class="nav-item">
+								<a href="?requette=liste-medecin" class="nav-link">
+									<i class='fas fa-fw fa-hospital-user nav_icon'></i>
+									<p>
+										Médecins
+										<i class="right fas fa-angle-left"></i>
+									</p>
+								</a>
+								<ul class="nav nav-treeview">
+									<li class="nav-item">
+										<a href="?requette=liste-medecin" class="nav-link">
+											<i class='fas fa-fw fa-user-check nav_icon'></i>
+											<p>Liste des médecins</p>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="?requette=ajout-medecin" class="nav-link">
+											<i class='fas fa-fw fa-user-plus nav_icon'></i>
+											<p>Ajouter un médecin</p>
 										</a>
 									</li>
 								</ul>

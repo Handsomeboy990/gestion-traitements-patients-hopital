@@ -219,8 +219,29 @@ function router()
                 case "dossier-patient":
                     include "patients/dossier-patient.php";
                     break;
-            
 
+
+            case "liste-medecin":
+                include "medecins/liste-medecin.php";
+                break;
+
+                case "ajout-medecin":
+                    include "medecins/ajout-medecin.php";
+                    break;
+
+                case "ajout-medecin-traitement":
+                    include "medecins/ajout-medecin-traitement.php";
+                    break;
+    
+                case "medecin-dashboard":
+                    include "medecins/medecin-dashboard.php";
+                    break;
+            
+                case "dossier-medecin":
+                    include "medecins/dossier-medecin.php";
+                    break;
+                    
+                    
             case "liste-consultation":
                 include "consultations/liste-consultation.php";
                 break;
@@ -352,5 +373,151 @@ function get_liste_patient(): array
 
 
     return $liste_patient;
+
+}
+
+
+
+
+
+/**
+ * Cett fonction permet  d'ajouter un médecin a la base de données.
+ *
+ * @param string $nom_medecin Le nom du medecin.
+ *
+ * @return bool $ajout_medecin Le resultat de l'ajout de médecin.
+ */
+function ajout_medecin(string $nom_medecin, string $specialite): bool
+{
+
+    $ajout_medecin = false;
+
+    if (isset($nom_medecin) && !empty($nom_medecin) AND isset($specialite) && !empty($specialite)) {
+
+        $db = connect_db();
+
+        // Ecriture de la requête
+        $requette = 'INSERT INTO medecin (nommedecin, specialite) VALUES (:nommedecin, :specialite);';
+
+        // Préparation
+        $inserer_medecin = $db->prepare($requette);
+
+        // Exécution ! La recette est maintenant en base de données
+        $resultat = $inserer_medecin->execute([
+            'nommedecin' => $nom_medecin,
+            'specialite' => $specialite
+        ]);
+
+
+        if ($resultat) {
+            $ajout_medecin = true;
+        }
+
+    }
+
+    return $ajout_medecin;
+
+}
+
+function check_if_medecin_exist(string $nom_medecin): bool
+{
+
+    $check_if_medecin_exist = false;
+
+    if (isset($nom_medecin) && !empty($nom_medecin)) {
+
+        $db = connect_db();
+
+        // Ecriture de la requête
+        $requette = 'SELECT count(*) as nbr_medecin FROM medecin WHERE nommedecin = :nommedecin;';
+
+        // Préparation
+        $verifier_medecin = $db->prepare($requette);
+
+        // Exécution ! La recette est maintenant en base de données
+        $resultat = $verifier_medecin->execute([
+            'nommedecin' => $nom_medecin
+        ]);
+
+        if ($resultat) {
+
+            $check_if_medecin_exist = ($verifier_medecin->fetch(PDO::FETCH_ASSOC)["nbr_medecin"] > 0) ? true : false;
+
+        }
+
+    }
+
+    return $check_if_medecin_exist;
+
+}
+
+
+
+
+
+/**
+ * Cette fonction permet de récupérer la liste des médecins de la base de donnée.
+ *
+ * @return array $liste_medecins La liste des médecins.
+ */
+function get_liste_medecins(): array
+{
+
+    $liste_medecins = array();
+
+    $db = connect_db();
+
+    // Ecriture de la requête
+    $requette = 'SELECT * FROM medecin';
+
+    // Préparation
+    $verifier_liste_medecins = $db->prepare($requette);
+
+    // Exécution ! La recette est maintenant en base de données
+    $resultat = $verifier_liste_medecins->execute();
+
+    if ($resultat) {
+
+        $liste_medecins = $verifier_liste_medecins->fetchAll(PDO::FETCH_ASSOC);
+
+    }
+
+
+    return $liste_medecins;
+
+}
+
+/**
+ * Cette fonction permet de récupérer un médecin via son numéro d'immatriculation.
+ *
+ * @param int $matmed L'immatriculation du médecin.
+ *
+ * @return array $medecin Le médecin.
+ */
+function get_medecin_by_matmed(int $matmed): array
+{
+
+    $medecin = array();
+
+    $db = connect_db();
+
+    // Ecriture de la requête
+    $requette = 'SELECT * FROM medecin WHERE matmed = :matmed ';
+
+    // Préparation
+    $verifier_medecin = $db->prepare($requette);
+
+    // Exécution ! La recette est maintenant en base de données
+    $resultat = $verifier_medecin->execute([
+        "matmed" => $matmed
+    ]);
+
+    if ($resultat) {
+
+        $medecin = $verifier_medecin->fetchAll(PDO::FETCH_ASSOC);
+
+    }
+
+    return $medecin;
 
 }

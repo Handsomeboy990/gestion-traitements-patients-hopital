@@ -167,6 +167,31 @@ if (!$user_connected) {
 								</ul>
 							</li>
 
+
+							<li class="nav-item">
+								<a href="?requette=liste-medecin" class="nav-link">
+									<i class='fas fa-fw fa-hospital-user nav_icon'></i>
+									<p>
+										Médecins
+										<i class="right fas fa-angle-left"></i>
+									</p>
+								</a>
+								<ul class="nav nav-treeview">
+									<li class="nav-item">
+										<a href="?requette=liste-medecin" class="nav-link">
+											<i class='fas fa-fw fa-user-check nav_icon'></i>
+											<p>Liste des médecins</p>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="?requette=ajout-medecin" class="nav-link">
+											<i class='fas fa-fw fa-user-plus nav_icon'></i>
+											<p>Ajouter un médecins</p>
+										</a>
+									</li>
+								</ul>
+							</li>
+
 							<li class="nav-item">
 								<a href="?requette=consultations" class="nav-link">
 									<i class='fas fa-fw fa-book-medical nav_icon'></i>
