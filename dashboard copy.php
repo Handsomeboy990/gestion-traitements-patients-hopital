@@ -44,15 +44,15 @@
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-3 fs-4 carte">Ajouter patient</div>
+                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-3 fs-4 carte">Patients</div>
                         </div>
                         <div class="col-auto">
-                            <i class="fas fa-user-plus fa-2x text-gray-300"></i>
+                            <i class="fas fa-hospital-user fa-2x text-gray-300"></i>
                         </div>
                     </div>
                 </div>
                 <div class="d-grid gap-2">
-                    <a href="?requette=inscription-patient" class="btn btn-danger">Aller
+                    <a href="?requette=patient-dashboard" class="btn btn-danger">Aller
                         <span><i class="fas fa-fw fa-arrow-circle-right"></i></span>
                     </a>
                 </div>

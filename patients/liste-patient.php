@@ -91,7 +91,7 @@ $liste_patient = get_liste_patient();
                                 
 
 
-                            <?php if (isset($liste_patient) && !empty($liste_patient)) {
+                            <?php if ((isset($liste_patient) && !empty($liste_patient)) OR (isset($age_patient) && !empty($age_patient))) {
 
                                 ?>
 
@@ -102,6 +102,7 @@ $liste_patient = get_liste_patient();
                                     <th scope="col" class="col-2 text-center">Prénoms</th>
                                     <th scope="col" class="col-2 text-center">Nom</th>
                                     <th scope="col" class="col-2 text-center">Sexe</th>
+                                    <th scope="col" class="col-2 text-center">Age</th>
                                     <th scope="col" class="col-2 text-center">Allergies</th>
                                     <th scope="col" class="col-2 text-center">Actions</th>
                                 </tr>
@@ -116,6 +117,7 @@ $liste_patient = get_liste_patient();
                                         <td class="text-center sorting_1"><?= $patient["prenompatient"]; ?></td>
                                         <td class="text-center sorting_1"><?= $patient["nompatient"]; ?></td>
                                         <td class="text-center sorting_1"><?= $patient["sexepatient"]; ?></td>
+                                        <td class="text-center sorting_1"><?=  $patient["age"]; ?></td>
                                         <td class="text-center sorting_1"><?= $patient["allergie"]; ?></td> 
                                         <td class="text-center">
                                             <a href="#" class="btn btn-primary mb-3" data-toggle="modal" data-target="#rdvpatient-<?= $patient["numdossier"]; ?>"><i class="fas fa-fw fa-calendar-alt"></i></a>

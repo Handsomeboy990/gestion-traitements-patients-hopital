@@ -29,11 +29,25 @@ if (isset($_POST["sexe_patient"]) AND !empty($_POST["sexe_patient"])) {
     $erreurs["sexe_patient"] = "Ce champs est requis. Veuillez le renseigner.";
 };
 
-if (isset($_POST["date_naissance_patient"]) AND !empty($_POST["date_naissance_patient"])) {
+if (isset($_POST["date_naissance_patient"]) AND !empty($_POST["date_naissance_patient"]) AND $_POST["date_naissance_patient"] <= date("Y-m-d")) {
     $donnees["date_naissance_patient"] = $_POST["date_naissance_patient"];
+
+
+        //calcule de l'age du patient
+        $age= date_diff(date_create($_POST["date_naissance_patient"]),date_create(date("Y-m-d")))->format('%y') ;
+
+        $donnees["age"] = $age;
+
+    
 } else {
-    $erreurs["date_naissance_patient"] = "Ce champs est requis. Veuillez le renseigner.";
+   
+    if (isset($_POST["date_naissance_patient"]) AND !empty($_POST["date_naissance_patient"]) AND $_POST["date_naissance_patient"] > date("Y-m-d")) {
+        $erreurs["date_naissance_patient"] = "Veuillez renseigner une date de naissance valide.";
+    } else{
+        $erreurs["date_naissance_patient"] = "Ce champs est requis. Veuillez le renseigner.";
+    }
 };
+
 
 if (isset($_POST["allergie"]) AND !empty($_POST["allergie"])) {
     $donnees["allergie"] = $_POST["allergie"];
@@ -50,7 +64,7 @@ if (empty($erreurs)) {
 
     if (!$check_if_patient_exist) {
 
-        $inscription_patient = inscription_patient($donnees["nom_patient"], $donnees["prenom_patient"], $donnees["sexe_patient"], $donnees["date_naissance_patient"], $donnees["allergie"]);
+        $inscription_patient = inscription_patient($donnees["nom_patient"], $donnees["prenom_patient"], $donnees["sexe_patient"], $donnees["date_naissance_patient"], $donnees["allergie"],$donnees["age"]);
 
         if ($inscription_patient=true) {
 

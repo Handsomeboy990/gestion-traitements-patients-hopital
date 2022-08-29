@@ -247,7 +247,7 @@
 
                                         <div class="input-group-text">
 
-                                            <span class="fa-solid fa-hand-dots"></span>
+                                            <span class='bx bxs-injection'></span>
 
                                         </div>
 

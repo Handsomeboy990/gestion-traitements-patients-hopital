@@ -211,6 +211,15 @@ function router()
                 case "inscription-patient-traitement":
                     include "patients/inscription-patient-traitement.php";
                     break;
+    
+                case "patient-dashboard":
+                    include "patients/patient-dashboard.php";
+                    break;
+            
+                case "dossier-patient":
+                    include "patients/dossier-patient.php";
+                    break;
+            
 
             case "liste-consultation":
                 include "consultations/liste-consultation.php";
@@ -236,17 +245,17 @@ function router()
  * 
  * @return bool $inscription_patient Le resultat de l'ajout du patient.
  */
-function inscription_patient(string $nom_patient, string $prenom_patient, string $sexepatient, string $date_naissance_patient, string $allergie): bool  
+function inscription_patient(string $nom_patient, string $prenom_patient, string $sexepatient, string $date_naissance_patient, string $allergie, int $age): bool  
 {
 
     $inscription_patient = false;
 
-    if((isset($nom_patient) && !empty($nom_patient)) AND (isset($prenom_patient) && !empty($prenom_patient)) AND (isset($sexepatient) && !empty($sexepatient)) AND (isset($date_naissance_patient) && !empty($date_naissance_patient)) AND (isset($allergie) && !empty($allergie)) ){
+    if((isset($nom_patient) && !empty($nom_patient)) AND (isset($prenom_patient) && !empty($prenom_patient)) AND (isset($sexepatient) && !empty($sexepatient)) AND (isset($date_naissance_patient) && !empty($date_naissance_patient)) AND (isset($allergie) && !empty($allergie)) AND (isset($age) && !empty($age)) ){
 
         $db = connect_db();
 
         // Ecriture de la requête
-        $requette = 'INSERT INTO patient (nompatient, prenompatient, sexepatient, date_naissance_patient, allergie) VALUES (:nompatient, :prenompatient, :sexepatient, :date_naissance_patient, :allergie);';
+        $requette = 'INSERT INTO patient (nompatient, prenompatient, sexepatient, date_naissance_patient, allergie, age) VALUES (:nompatient, :prenompatient, :sexepatient, :date_naissance_patient, :allergie, :age);';
 
         // Préparation
         $inserer_patient = $db->prepare($requette);
@@ -257,7 +266,8 @@ function inscription_patient(string $nom_patient, string $prenom_patient, string
             'prenompatient' => $prenom_patient,
             'sexepatient' => $sexepatient,
             'date_naissance_patient' => $date_naissance_patient,
-            'allergie' => $allergie
+            'allergie' => $allergie,
+            'age' => $age
 
         ]);
 
