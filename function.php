@@ -233,15 +233,6 @@ function router()
                     include "medecins/ajout-medecin-traitement.php";
                     break;
     
-                case "medecin-dashboard":
-                    include "medecins/medecin-dashboard.php";
-                    break;
-            
-                case "dossier-medecin":
-                    include "medecins/dossier-medecin.php";
-                    break;
-                    
-               
             case "liste-maladie":
                 include "maladies/liste-maladie.php";
                 break;
@@ -253,14 +244,31 @@ function router()
                 case "ajout-maladie-traitement":
                     include "maladies/ajout-maladie-traitement.php";
                     break;
+
+            case "liste-medicament":
+                include "medicaments/liste-medicament.php";
+                break;
+
+                case "ajout-medicament":
+                    include "medicaments/ajout-medicament.php";
+                    break;
+
+                case "ajout-medicament-traitement":
+                    include "medicaments/ajout-medicament-traitement.php";
+                    break;
+
+            case "liste-soin":
+                include "soins/liste-soin.php";
+                break;
+
+                case "ajout-soin":
+                    include "soins/ajout-soin.php";
+                    break;
+
+                case "ajout-soin-traitement":
+                    include "soins/ajout-soin-traitement.php";
+                    break;
     
-                case "maladie-dashboard":
-                    include "maladies/maladie-dashboard.php";
-                    break;
-            
-                case "dossier-maladie":
-                    include "maladies/dossier-maladie.php";
-                    break;
                
             case "liste-consultation":
                 include "consultations/liste-consultation.php";
@@ -551,7 +559,7 @@ function get_medecin_by_matmed(int $matmed): array
 /**
  * Cett fonction permet  d'ajouter une maladie à la base de données.
  *
- * @param string $nommal Le nom du medecin.
+ * @param string $nommal Le nom de la maladie.
  *
  * @return bool $ajout_maladie Le resultat de l'ajout de la maladie.
  */
@@ -625,7 +633,7 @@ function check_if_maladie_exist(string $nommal): bool
 /**
  * Cette fonction permet de récupérer la liste des maladies de la base de donnée.
  *
- * @return array $liste_medecins La liste des maladies.
+ * @return array $liste_maladies La liste des maladies.
  */
 function get_liste_maladies(): array
 {
@@ -657,9 +665,9 @@ function get_liste_maladies(): array
 /**
  * Cette fonction permet de récupérer une maladie via son numéro d'identification.
  *
- * @param int $nummal L'immatriculation du médecin.
+ * @param int $nummal L'id de la maladie.
  *
- * @return array $maladie Le médecin.
+ * @return array $maladie La maladie.
  */
 function get_maladie_by_nummal(int $nummal): array
 {
@@ -669,7 +677,7 @@ function get_maladie_by_nummal(int $nummal): array
     $db = connect_db();
 
     // Ecriture de la requête
-    $requette = 'SELECT * FROM maladie WHERE nummmal = :nummal ';
+    $requette = 'SELECT * FROM maladie WHERE nummal = :nummal ';
 
     // Préparation
     $verifier_maladie = $db->prepare($requette);
@@ -686,5 +694,299 @@ function get_maladie_by_nummal(int $nummal): array
     }
 
     return $maladie;
+
+}
+
+
+
+
+
+
+/**
+ * Cett fonction permet  d'ajouter un medicament à la base de données.
+ *
+ * @param string $nommed Le nom du medicament.
+ *
+ * @return bool $ajout_medicament Le resultat de l'ajout du medicament.
+ */
+function ajout_medicament(string $nommed): bool
+{
+
+    $ajout_medicament = false;
+
+    if (isset($nommed) && !empty($nommed)) {
+
+        $db = connect_db();
+
+        // Ecriture de la requête
+        $requette = 'INSERT INTO medicament (nommed) VALUES (:nommed);';
+
+        // Préparation
+        $inserer_medicament = $db->prepare($requette);
+
+        // Exécution ! La recette est maintenant en base de données
+        $resultat = $inserer_medicament->execute([
+            'nommed' => $nommed
+        ]);
+
+
+        if ($resultat) {
+            $ajout_medicament = true;
+        }
+
+    }
+
+    return $ajout_medicament;
+
+}
+
+function check_if_medicament_exist(string $nommed): bool
+{
+
+    $check_if_medicament_exist = false;
+
+    if (isset($nommed) && !empty($nommed)) {
+
+        $db = connect_db();
+
+        // Ecriture de la requête
+        $requette = 'SELECT count(*) as nbr_medicament FROM medicament WHERE nommed = :nommed;';
+
+        // Préparation
+        $verifier_medicament = $db->prepare($requette);
+
+        // Exécution ! La recette est maintenant en base de données
+        $resultat = $verifier_medicament->execute([
+            'nommed' => $nommed
+        ]);
+
+        if ($resultat) {
+
+            $check_if_medicament_exist = ($verifier_medicament->fetch(PDO::FETCH_ASSOC)["nbr_medicament"] > 0) ? true : false;
+
+        }
+
+    }
+
+    return $check_if_medicament_exist;
+
+}
+
+
+
+
+
+/**
+ * Cette fonction permet de récupérer la liste des medicaments de la base de donnée.
+ *
+ * @return array $liste_medicaments La liste des medicaments.
+ */
+function get_liste_medicaments(): array
+{
+
+    $liste_medicaments = array();
+
+    $db = connect_db();
+
+    // Ecriture de la requête
+    $requette = 'SELECT * FROM medicament';
+
+    // Préparation
+    $verifier_liste_medicaments = $db->prepare($requette);
+
+    // Exécution ! La recette est maintenant en base de données
+    $resultat = $verifier_liste_medicaments->execute();
+
+    if ($resultat) {
+
+        $liste_medicaments = $verifier_liste_medicaments->fetchAll(PDO::FETCH_ASSOC);
+
+    }
+
+
+    return $liste_medicaments;
+
+}
+
+/**
+ * Cette fonction permet de récupérer un medicament via son numéro d'identification.
+ *
+ * @param int $nummed L'id du medicament.
+ *
+ * @return array $medicament Le medicament.
+ */
+function get_medicament_by_nummed(int $nummed): array
+{
+
+    $medicament = array();
+
+    $db = connect_db();
+
+    // Ecriture de la requête
+    $requette = 'SELECT * FROM medicament WHERE nummed = :nummed ';
+
+    // Préparation
+    $verifier_medicament = $db->prepare($requette);
+
+    // Exécution ! La recette est maintenant en base de données
+    $resultat = $verifier_medicament->execute([
+        "nummed" => $nummed
+    ]);
+
+    if ($resultat) {
+
+        $medicament = $verifier_medicament->fetchAll(PDO::FETCH_ASSOC);
+
+    }
+
+    return $medicament;
+
+}
+
+
+
+
+
+
+/**
+ * Cett fonction permet  d'ajouter un soin à la base de données.
+ *
+ * @param string $libsoin Le nom du soin.
+ *
+ * @return bool $ajout_soin Le resultat de l'ajout du soin.
+ */
+function ajout_soin(string $libsoin, int $coutsoin): bool
+{
+
+    $ajout_soin = false;
+
+    if (isset($libsoin) && !empty($libsoin) AND isset($coutsoin) && !empty($coutsoin)) {
+
+        $db = connect_db();
+
+        // Ecriture de la requête
+        $requette = 'INSERT INTO soin (libsoin, coutsoin) VALUES (:libsoin, :coutsoin);';
+
+        // Préparation
+        $inserer_soin = $db->prepare($requette);
+
+        // Exécution ! La recette est maintenant en base de données
+        $resultat = $inserer_soin->execute([
+            'libsoin' => $libsoin,
+            'coutsoin' => $coutsoin
+        ]);
+
+
+        if ($resultat) {
+            $ajout_soin = true;
+        }
+
+    }
+
+    return $ajout_soin;
+
+}
+
+function check_if_soin_exist(string $libsoin, int $coutsoin): bool
+{
+
+    $check_if_soin_exist = false;
+
+    if (isset($libsoin) && !empty($libsoin) AND isset($coutsoin) && !empty($coutsoin)) {
+
+        $db = connect_db();
+
+        // Ecriture de la requête
+        $requette = 'SELECT count(*) as nbr_soin FROM soin WHERE libsoin = :libsoin; coutsoin = :coutsoin;';
+
+        // Préparation
+        $verifier_soin = $db->prepare($requette);
+
+        // Exécution ! La recette est maintenant en base de données
+        $resultat = $verifier_soin->execute([
+            'libsoin' => $libsoin,
+            'coutsoin' => $coutsoin
+        ]);
+
+        if ($resultat) {
+
+            $check_if_soin_exist = ($verifier_soin->fetch(PDO::FETCH_ASSOC)["nbr_soin"] > 0) ? true : false;
+
+        }
+
+    }
+
+    return $check_if_soin_exist;
+
+}
+
+
+
+
+
+/**
+ * Cette fonction permet de récupérer la liste des soins de la base de donnée.
+ *
+ * @return array $liste_soins La liste des soins.
+ */
+function get_liste_soins(): array
+{
+
+    $liste_soins = array();
+
+    $db = connect_db();
+
+    // Ecriture de la requête
+    $requette = 'SELECT * FROM soin';
+
+    // Préparation
+    $verifier_liste_soins = $db->prepare($requette);
+
+    // Exécution ! La recette est maintenant en base de données
+    $resultat = $verifier_liste_soins->execute();
+
+    if ($resultat) {
+
+        $liste_soins = $verifier_liste_soins->fetchAll(PDO::FETCH_ASSOC);
+
+    }
+
+
+    return $liste_soins;
+
+}
+
+/**
+ * Cette fonction permet de récupérer un soin via son numéro d'identification.
+ *
+ * @param int $nummed L'id du soin.
+ *
+ * @return array $soin Le soin.
+ */
+function get_soin_by_nummed(int $nummed): array
+{
+
+    $soin = array();
+
+    $db = connect_db();
+
+    // Ecriture de la requête
+    $requette = 'SELECT * FROM soin WHERE codsoin = :codsoin ';
+
+    // Préparation
+    $verifier_soin = $db->prepare($requette);
+
+    // Exécution ! La recette est maintenant en base de données
+    $resultat = $verifier_soin->execute([
+        "codsoin" => $codsoin
+    ]);
+
+    if ($resultat) {
+
+        $soin = $verifier_soin->fetchAll(PDO::FETCH_ASSOC);
+
+    }
+
+    return $soin;
 
 }

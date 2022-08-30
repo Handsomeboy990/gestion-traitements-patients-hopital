@@ -6,7 +6,7 @@
             <div class="w-50">
                 <h1 class="h3 mb-0 text-gray-800">
                     <i class="fas fa-fw fa-user-plus"></i>
-                    <span>Ajout d'une nouvelle maladie</span>
+                    <span>Ajout d'un nouveau soin</span>
                 </h1>
                 
             </div>
@@ -14,8 +14,8 @@
             <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb" class="w-50 d-flex justify-content-end">
                 <ol class="breadcrumb">
                 <li class="breadcrumb-item"><i class="fas fa-fw fa-hospital-alt"></i><a href="?requette=dashboard">Accueil</a></li>
-                <li class="breadcrumb-item"><i class="fas fa-fw fa-disease"></i><a href="?requette=liste-maladie">Maladies</a></li>
-                <li class="breadcrumb-item"><i class="fas fa-fw fa-disease"></i><a href="?requette=ajout-maladie">Ajouter une maladie</a></li>
+                <li class="breadcrumb-item"><i class="fas fa-fw fa-hand-holding-medical"></i><a href="?requette=liste-soin">Soins</a></li>
+                <li class="breadcrumb-item"><i class="fas fa-fw fa-hand-holding-medical"></i><a href="?requette=ajout-soin">Ajouter un soin</a></li>
                 </ol>
             </nav>
         </div>
@@ -30,7 +30,7 @@
 
 
         <div class="col-md-11 d-flex justify-content-end text-end">
-            <a href="?requette=liste-maladie" class="btn btn-success">Consulter la liste des maladies</a>
+            <a href="?requette=liste-soin" class="btn btn-success">Consulter la liste des soins</a>
         </div>
         
         <div class="card card-outline card-primary bg-transparent mt-5">
@@ -59,22 +59,44 @@
 
                 ?>
 
-                <form class="form-horizontal" action="?requette=ajout-maladie-traitement" method="POST">
+                <form class="form-horizontal" action="?requette=ajout-soin-traitement" method="POST">
                     <div class="card-body">
                         <div class="form-group row">
-                            <label for="nommal" class="col-sm-2 col-form-label">Nom de la maladie: </label>
+                            <label for="libsoin" class="col-sm-2 col-form-label">Nom du soin: </label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" name="nommal" id="nommal"
-                                    placeholder="Veuillez entrer le nom de la maladie"
-                                    value="<?= (isset($donnees["nommal"]) && !empty($donnees["nommal"])) ? $donnees["nommal"] : ""; ?>"
+                                <input type="text" class="form-control" name="libsoin" id="libsoin"
+                                    placeholder="Veuillez entrer le nom du soin"
+                                    value="<?= (isset($donnees["libsoin"]) && !empty($donnees["libsoin"])) ? $donnees["libsoin"] : ""; ?>"
                                 >
 
 
                                 <span class="text-danger">
 
                                     <?php
-                                    if (isset($erreurs["nommal"]) && !empty($erreurs["nommal"])) {
-                                        echo $erreurs["nommal"];
+                                    if (isset($erreurs["libsoin"]) && !empty($erreurs["libsoin"])) {
+                                        echo $erreurs["libsoin"];
+                                    }
+
+                                    ?>
+
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="coutsoin" class="col-sm-2 col-form-label">Nom du soin: </label>
+                            <div class="col-sm-10">
+                                <input type="number" class="form-control" name="coutsoin" id="coutsoin"
+                                    placeholder="Veuillez entrer le cout du soin"
+                                    value="<?= (isset($donnees["coutsoin"]) && !empty($donnees["coutsoin"])) ? $donnees["coutsoin"] : ""; ?>"
+                                >
+
+
+                                <span class="text-danger">
+
+                                    <?php
+                                    if (isset($erreurs["coutsoin"]) && !empty($erreurs["coutsoin"])) {
+                                        echo $erreurs["coutsoin"];
                                     }
 
                                     ?>
@@ -87,7 +109,7 @@
 
                     <div class="card-footer">
                         <button type="reset" class="btn btn-danger">Annuler</button>
-                        <button type="submit" class="btn btn-primary  float-right">Enregistrer une maladie</button>
+                        <button type="submit" class="btn btn-primary  float-right">Enregistrer un soin</button>
                     </div>
 
                 </form>
