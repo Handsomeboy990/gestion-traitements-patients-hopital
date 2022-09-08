@@ -1,5 +1,5 @@
 <?php
-$liste_patient = get_liste_patient();
+//$liste_ordonnances = get_liste_ordonnances();
 ?>
 
 
@@ -12,15 +12,14 @@ $liste_patient = get_liste_patient();
         <div style="width: 20%;">
             <h1 class="h3 mb-0 text-gray-800">
                 <i class="fas fa-fw fa-user-hospital"></i>
-                <span>Patients</span>  
+                <span>Ordonnances</span>  
             </h1>
         </div>
 
         <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb" class="w-50 d-flex justify-content-end">
             <ol class="breadcrumb">
             <li class="breadcrumb-item"><i class="fas fa-fw fa-hospital-alt"></i><a href="?requette=dashboard">Accueil</a></li>
-            <li class="breadcrumb-item"><i class="fas fa-fw fa-hospital-user"></i><a href="?requette=patient-dashboard">Patients</a></li>
-            <li class="breadcrumb-item"><i class="fas fa-fw fa-user-check"></i><a href="?requette=liste-patient">Liste des patients</a></li>
+            <li class="breadcrumb-item"><i class="fas fa-fw fa-user-check"></i><a href="?requette=liste-ordonnance">Liste des ordonnances</a></li>
             </ol>
         </nav>
     </div>
@@ -30,11 +29,11 @@ $liste_patient = get_liste_patient();
         <div class="row">
 
             <div class="col-md-6">
-                <h1>Liste des patients</h1>
+                <h1>Liste des ordonnances</h1>
             </div>
 
             <div class="col-md-6 text-end">
-                <a href="?requette=inscription-patient" class="btn btn-success">Ajouter un patient</a>
+                <a href="?requette=prescription-ordonnance" class="btn btn-success">Prescrire une ordonnance</a>
             </div>
 
         </div>
@@ -91,67 +90,37 @@ $liste_patient = get_liste_patient();
                                 
 
 
-                            <?php if ((isset($liste_patient) && !empty($liste_patient)) OR (isset($age_patient) && !empty($age_patient))) {
+                            <?php if ((isset($liste_ordonnances) && !empty($liste_ordonnances))) {
 
                                 ?>
 
                                 <table class="table table-hover table-success table-striped  border-primary  dataTable" role="grid" aria-describedby="dataTable_info" style="width: 100%;" width="100%" cellspacing="0">
                                 <thead>
                                 <tr role="row">
-                                    <th scope="col" class="col-1 text-center">N°dossier</th>
-                                    <th scope="col" class="col-2 text-center">Prénoms</th>
-                                    <th scope="col" class="col-2 text-center">Nom</th>
-                                    <th scope="col" class="col-1 text-center">Sexe</th>
-                                    <th scope="col" class="col-2 text-center">Age</th>
-                                    <th scope="col" class="col-2 text-center">Allergies</th>
-                                    <th scope="col" class="col-2 text-center">Actions</th>
+                                    <th scope="col" class="col-2 text-center">N°</th>
+                                    <th scope="col" class="col-2 text-center">Date de prescrition</th>
+                                    <th scope="col" class="col-2 text-center">Médecin prescripteur</th>
+                                    <th scope="col" class="col-2 text-center">Traitement</th>
+                                    <th scope="col" class="col-2 text-center">RDV</th>
+                                    <th scope="col" class="col-2 text-center">Nom du patient</th>
+                                    <th scope="col" class="col-2 text-center">Posologie</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 <?php
 
-                                foreach ($liste_patient as $patient) {
+                                foreach ($liste_ordonnances as $ordonnance) {
                                     ?>
                                     <tr class="odd">
-                                        <td  scope="row"  class="text-center"><?= $patient["numdossier"]; ?></td>
-                                        <td class="text-center sorting_1"><?= $patient["prenompatient"]; ?></td>
-                                        <td class="text-center sorting_1"><?= $patient["nompatient"]; ?></td>
-                                        <td class="text-center sorting_1"><?= $patient["sexepatient"]; ?></td>
-                                        <td class="text-center sorting_1"><?=  $patient["age"]; ?></td>
-                                        <td class="text-center sorting_1"><?= $patient["allergie"]; ?></td> 
-                                        <td class="text-center">
-                                            <a href="#" class="btn btn-primary mb-3" data-toggle="modal" data-target="#rdvpatient-<?= $patient["numdossier"]; ?>"><i class="fas fa-fw fa-calendar-alt"></i></a>
-                                            <a href="?requette=dossierpatient&numdossier=<?= $patient["numdossier"]; ?>" class="btn btn-success mb-3"><i class="fas fa-fw fa-eye"></i></a>
-                                            <a href="?requette=modifierpatient&numdossier=<?= $patient["numdossier"]; ?>" class="btn btn-warning mb-3"><i class="fas fa-fw fa-edit"></i></a> 
-                                        </td>
+                                        <td  scope="row"  class="text-center"><?= $ordonnance["numord"]; ?></td>
+                                        <td class="text-center sorting_1"><?= $ordonnance["datord"]; ?></td>
+                                        <td class="text-center sorting_1"><?= $ordonnance["nommedecin"]; ?></td>
+                                        <td class="text-center sorting_1"><?= $ordonnance["numtrait"]; ?></td>
+                                        <td class="text-center sorting_1"><?= $ordonnance["numrdv"]; ?></td>
+                                        <td class="text-center sorting_1"><?= $ordonnance["nompatient"]; ?></td>
+                                        <td class="text-center sorting_1"><?= $ordonnance["posologie"]; ?></td>
                                     </tr>
-                                    <div class="modal fade" id="rdvpatient-<?= $patient["numdossier"]; ?>"
-                                         style="display: none;" aria-hidden="true">
-                                        <div class="modal-dialog">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h4 class="modal-title">Ajouter RDV <?= $patient["nompatient"]; ?></h4>
-                                                    <button type="button" class="close" data-dismiss="modal"
-                                                            aria-label="Close">
-                                                        <span aria-hidden="true">×</span>
-                                                    </button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <p>Confirmer RDV <?= $patient["nompatient"]; ?> ?</p>
-                                                </div>
-                                                <div class="modal-footer ">
-
-                                                    <a href="?requette=supprimer-patient&num-patient=<?= $patient["numdossier"]; ?>"
-                                                       class="btn btn-danger">Oui</a>
-                                                    <button type="button" class="btn btn-default" data-dismiss="modal">
-                                                        Annuler
-                                                    </button>
-                                                </div>
-                                            </div>
-                                            <!-- /.modal-content -->
-                                        </div>
-                                        <!-- /.modal-dialog -->
-                                    </div>
+                                    
                                     <?php
                                 }
 
@@ -163,7 +132,7 @@ $liste_patient = get_liste_patient();
                             <?php
                             } else {
 
-                                echo "Aucun patient n'a été trouvé.";
+                                echo "Aucune ordonnance n'a été trouvé.";
 
                             }
                             ?>
@@ -228,5 +197,4 @@ $liste_patient = get_liste_patient();
     
         </div>          
     </div>    
-        
-                    </div>
+</div>

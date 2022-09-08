@@ -1,6 +1,4 @@
-<?php
-$liste_medicaments = get_liste_medicaments();
-?>
+
 
 
 <section class="content-header">
@@ -11,15 +9,15 @@ $liste_medicaments = get_liste_medicaments();
             <div class="w-50">
                 <h1 class="h3 mb-0 text-gray-800">
                     <i class="fas fa-fw fa-user-plus"></i>
-                    <span>Ajout d'un nouveau patient</span>
+                    <span>Prescription d'une nouvelle ordonnance</span>
                 </h1>
             </div>
 
             <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb" class="w-50 d-flex justify-content-end">
                 <ol class="breadcrumb">
                 <li class="breadcrumb-item"><i class="fas fa-fw fa-hospital-alt"></i><a href="?requette=dashboard">Accueil</a></li>
-                <li class="breadcrumb-item"><i class="fas fa-fw fa-hospital-user"></i><a href="?requette=patient-dashboard">Patients</a></li>
-                <li class="breadcrumb-item"><i class="fas fa-fw fa-user-plus"></i><a href="?requette=inscription-patient">Ajouter un patient</a></li>
+                <li class="breadcrumb-item"><i class="fas fa-fw fa-hospital-user"></i><a href="?requette=patient-dashboard">Ordonnances</a></li>
+                <li class="breadcrumb-item"><i class="fas fa-fw fa-user-plus"></i><a href="?requette=inscription-patient">Prescrire une ordonnace</a></li>
                 </ol>
             </nav>
         </div>
@@ -63,15 +61,59 @@ $liste_medicaments = get_liste_medicaments();
 
                         <div class="col-sm-12">
 
+                            <!-- Le champs date de prescription -->
                             <div class="col-sm-12 mb-3">
-                                <h2 class="d-flex justify-content-center mb-5">Informations Générales du Patient</h2>
+
+                                <label for="date_prescription">
+
+                                    Date de prescrition:
+
+                                    <span class="text-danger">*</span>
+
+                                </label>
+
+                                <div class="input-group mb-3">
+
+                                    <input type="date" name="date_prescription" required id="date_prescription" class="form-control"
+                                        placeholder="Entrer la date de prescription"
+                                        value="<?= (isset($donnees["date_prescription"]) AND !empty($donnees["date_prescription"])) ? $donnees["date_prescription"] : ""; ?>"
+                                        required>
+
+                                    
+                                    <div class="input-group-append">
+
+                                        <div class="input-group-text">
+
+                                            <span class="fas fa-calendar"></span>
+
+                                        </div>
+
+                                    </div>
+                               
+                               
+                                </div>
+
+                                <span class="text-danger">
+
+                                    <?php
+
+
+                                    if (isset($erreurs["date_prescription"]) AND !empty($erreurs["date_prescription"])) {
+                                        echo $erreurs["date_prescription"];
+                                    }
+
+                                    ?>
+
+                                </span>
+
                             </div>
+                                        
                             <div class="form-label col-sm-12 mb-3">
-                                <label for="nom_patient" class="col-form-label">Nom<span class="text-danger">*</span></label>
+                                <label for="matmed" class="col-form-label">Nom<span class="text-danger">*</span></label>
                                 
                                 <div class="input-group">
     
-                                    <input type="text" required= "required" class="form-control" name="nom_patient" id="nom_patient" placeholder="Veuillez entrer le nom du patient" value="<?= (isset($donnees["nom_patient"]) && !empty($donnees["nom_patient"])) ? $donnees["nom_patient"] : ""; ?>">
+                                    <input type="text" required= "required" class="form-control" name="matmed" id="matmed" placeholder="Veuillez entrer votre matricule" value="<?= (isset($donnees["matmed"]) && !empty($donnees["matmed"])) ? $donnees["matmed"] : ""; ?>">
         
         
                                     <div class="input-group-append">
@@ -89,8 +131,8 @@ $liste_medicaments = get_liste_medicaments();
                                 <span class="text-danger">
 
                                     <?php
-                                    if (isset($erreurs["nom_patient"]) && !empty($erreurs["nom_patient"])) {
-                                        echo $erreurs["nom_patient"];
+                                    if (isset($erreurs["matmed"]) && !empty($erreurs["matmed"])) {
+                                        echo $erreurs["matmed"];
                                     }
 
                                     ?>
@@ -101,11 +143,11 @@ $liste_medicaments = get_liste_medicaments();
 
 
                             <div class="form-label col-sm-12 mb-3">
-                                <label for="prenom_patient" class="col-form-label">Prénom(s)<span class="text-danger">*</span></label>
+                                <label for="numtrait" class="col-form-label">Prénom(s)<span class="text-danger">*</span></label>
                                
                                 <div class="input-group">
                                 
-                                    <input type="text" class="form-control" name="prenom_patient" id="prenom_patient" required= "required" placeholder="Veuillez entrer le prénom du patient" value="<?= (isset($donnees["prenom_patient"]) && !empty($donnees["prenom_patient"])) ? $donnees["prenom_patient"] : ""; ?>">
+                                    <input type="text" class="form-control" name="numtrait" id="numtrait" required= "required" placeholder="Veuillez entrer le numéro du traitement" value="<?= (isset($donnees["numtrait"]) && !empty($donnees["numtrait"])) ? $donnees["numtrait"] : ""; ?>">
                             
                                     <div class="input-group-append">
 
@@ -121,8 +163,8 @@ $liste_medicaments = get_liste_medicaments();
                                 <span class="text-danger">
 
                                     <?php
-                                    if (isset($erreurs["prenom_patient"]) && !empty($erreurs["prenom_patient"])) {
-                                        echo $erreurs["prenom_patient"];
+                                    if (isset($erreurs["numtrait"]) && !empty($erreurs["numtrait"])) {
+                                        echo $erreurs["numtrait"];
                                     }
 
                                     ?>
@@ -186,53 +228,6 @@ $liste_medicaments = get_liste_medicaments();
 
                                     if (isset($erreurs["sexe_patient"]) AND !empty($erreurs["sexe_patient"])) {
                                         echo $erreurs["sexe_patient"];
-                                    }
-
-                                    ?>
-
-                                </span>
-
-                            </div>
-
-                            <!-- Le champs date de naissance -->
-                            <div class="col-sm-12 mb-3">
-
-                                <label for="inscription-date_naissance_patient">
-
-                                    Date de naissance:
-
-                                    <span class="text-danger">*</span>
-
-                                </label>
-
-                                <div class="input-group mb-3">
-
-                                    <input type="date" name="date_naissance_patient" required id="inscription-date_naissance_patient" class="form-control"
-                                        placeholder="Entrer la date de naissance"
-                                        value="<?= (isset($donnees["date_naissance_patient"]) AND !empty($donnees["date_naissance_patient"])) ? $donnees["date_naissance_patient"] : ""; ?>"
-                                        required>
-
-                                    
-                                    <div class="input-group-append">
-
-                                        <div class="input-group-text">
-
-                                            <span class="fas fa-baby"></span>
-
-                                        </div>
-
-                                    </div>
-                               
-                               
-                                </div>
-
-                                <span class="text-danger">
-
-                                    <?php
-
-
-                                    if (isset($erreurs["date_naissance_patient"]) AND !empty($erreurs["date_naissance_patient"])) {
-                                        echo $erreurs["date_naissance_patient"];
                                     }
 
                                     ?>

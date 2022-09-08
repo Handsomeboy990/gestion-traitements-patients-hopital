@@ -269,10 +269,30 @@ function router()
                     include "soins/ajout-soin-traitement.php";
                     break;
     
-               
-            case "liste-consultation":
-                include "consultations/liste-consultation.php";
+            case "liste-traitement":
+                include "traitement/liste-traitement.php";
                 break;
+
+                case "ajout-traitement":
+                    include "traitement/ajout-traitement.php";
+                    break;
+
+                case "ajout-traitement-traitement":
+                    include "traitement/ajout-traitement-traitement.php";
+                    break;
+    
+               
+            case "liste-ordonnance":
+                include "ordonnance/liste-ordonnance.php";
+                break;
+
+                case "prescription-ordonnance":
+                    include "ordonnance/prescription-ordonnance.php";
+                    break;
+
+                case "prescription-ordonnance-traitement":
+                    include "ordonnance/prescription-ordonnance-traitement.php";
+                    break;
 
             default:
                 include "default-dashboard.php";
@@ -281,7 +301,7 @@ function router()
 
     } else {
 
-        include "patients/liste-patient.php.php";
+        include "patients/liste-patient.php";
 
     }
 }
@@ -963,7 +983,7 @@ function get_liste_soins(): array
  *
  * @return array $soin Le soin.
  */
-function get_soin_by_nummed(int $nummed): array
+function get_soin_by_codsoin(int $codsoin): array
 {
 
     $soin = array();
@@ -988,5 +1008,40 @@ function get_soin_by_nummed(int $nummed): array
     }
 
     return $soin;
+
+}
+
+/**
+ * Cette fonction permet de récupérer la liste des médicaments prescrits à un patient et leur dose.
+ *
+ * @param string $nommed Le nom du médicament.
+ * @param string $posologie La posologie.
+ *
+ * @return array $liste_med_posologie La liste.
+ */
+function get_medicament_by_nommed(string $nommed, string $posologie): array
+{
+
+    $liste_med_posologie = array();
+
+    $db = connect_db();
+
+    $requette = 'SELECT nommed, posologie FROM dose D, traitement T, medicament M, ordonnance O WHERE M.nummed = :D.nummed AND D.numord = :O.numord AND T.numdossier = :O.numdossier';
+
+
+    $verifier_liste_med_posologie = $db->prepare($requette);
+
+
+    $resultat = $verifier_liste_med_posologie->execute();
+
+    if ($resultat) {
+
+        $liste_med_posologie = $verifier_liste_med_posologie->fetchAll(PDO::FETCH_ASSOC);
+
+    }
+
+
+    return $liste_med_posologie;
+
 
 }

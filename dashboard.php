@@ -289,12 +289,27 @@ if (!$user_connected) {
 							</li>
 
 							<li class="nav-item">
-								<a href="?requette=consultations" class="nav-link">
-									<i class='fas fa-fw fa-book-medical nav_icon'></i>
+								<a href="?requette=liste-ordonnance" class="nav-link">
+									<i class='fas fa-fw fa-bed nav_icon'></i>
 									<p>
-										Consultations
+										Ordonnances
+										<i class="right fas fa-angle-left"></i>
 									</p>
 								</a>
+								<ul class="nav nav-treeview">
+									<li class="nav-item">
+										<a href="?requette=liste-ordonnance" class="nav-link">
+											<i class='fas fa-fw fa-list nav_icon'></i>
+											<p>Liste des ordonnances</p>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="?requette=prescription-ordonnance" class="nav-link">
+											<i class='fas fa-fw fa-book-medical nav_icon'></i>
+											<p>Ajouter une ordonnance</p>
+										</a>
+									</li>
+								</ul>
 							</li>
 
 							<li class="nav-item">
