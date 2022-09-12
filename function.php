@@ -294,6 +294,18 @@ function router()
                     include "ordonnance/prescription-ordonnance-traitement.php";
                     break;
 
+            case "liste-rdv":
+                include "agenda/liste-rdv.php";
+                break;
+
+                case "ajout-rdv":
+                    include "agenda/ajout-rdv.php";
+                    break;
+
+                case "ajout-rdv-traitement":
+                    include "agenda/ajout-rdv-traitement.php";
+                    break;
+
             default:
                 include "default-dashboard.php";
                 break;
@@ -1043,5 +1055,159 @@ function get_medicament_by_nommed(string $nommed, string $posologie): array
 
     return $liste_med_posologie;
 
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/**
+ * Cett fonction permet  d'ajouter un rendez-vous à la base de données.
+ *
+ * @param string $datrdv La date du rendez-vous.
+ *
+ * @return bool $ajout_rdv Le resultat de l'ajout du rendez-vous.
+ */
+function ajout_rdv(string $datrdv): bool
+{
+
+    $ajout_rdv = false;
+
+    if (isset($datrdv) && !empty($datrdv)) {
+
+        $db = connect_db();
+
+        // Ecriture de la requête
+        $requette = 'INSERT INTO rdv (datrdv) VALUES (:datrdv);';
+
+        // Préparation
+        $inserer_rdv = $db->prepare($requette);
+
+        // Exécution ! La recette est maintenant en base de données
+        $resultat = $inserer_rdv->execute([
+            'datrdv' => $datrdv
+        ]);
+
+
+        if ($resultat) {
+            $ajout_rdv = true;
+        }
+
+    }
+
+    return $ajout_rdv;
+
+}
+
+
+
+function check_if_rdv_exist(string $rdv): bool
+{
+
+    $check_if_rdv_exist = false;
+
+    if (isset($rdv) && !empty($rdv)) {
+
+        $db = connect_db();
+
+        // Ecriture de la requête
+        $requette = 'SELECT count(*) as nbr_rdv FROM rdv WHERE datrdv = :datrdv;';
+
+        // Préparation
+        $verifier_rdv = $db->prepare($requette);
+
+        // Exécution ! La recette est maintenant en base de données
+        $resultat = $verifier_rdv->execute([
+            'datrdv' => $rdv
+        ]);
+
+        if ($resultat) {
+
+            $check_if_rdv_exist = ($verifier_rdv->fetch(PDO::FETCH_ASSOC)["nbr_rdv"] > 0) ? true : false;
+
+        }
+
+    }
+
+    return $check_if_rdv_exist;
+
+}
+
+
+
+/**
+ * Cette fonction permet de récupérer la liste des rdv de la base de donnée.
+ *
+ * @return array $liste_rdv La liste des rdv.
+ */
+function get_liste_rdv(): array
+{
+
+    $liste_rdv = array();
+
+    $db = connect_db();
+
+    // Ecriture de la requête
+    $requette = 'SELECT * FROM rdv';
+
+    // Préparation
+    $verifier_liste_rdv = $db->prepare($requette);
+
+    // Exécution ! La recette est maintenant en base de données
+    $resultat = $verifier_liste_rdv->execute();
+
+    if ($resultat) {
+
+        $liste_rdv = $verifier_liste_rdv->fetchAll(PDO::FETCH_ASSOC);
+
+    }
+
+
+    return $liste_rdv;
+
+}
+
+/**
+ * Cette fonction permet de récupérer un rdv via sa date.
+ *
+ * @param string $datrdv L'id du rdv.
+ *
+ * @return array $rdv Le rdv.
+ */
+function get_rdv_by_datrdv(string $datrdv): array
+{
+
+    $rdv = array();
+
+    $db = connect_db();
+
+    // Ecriture de la requête
+    $requette = 'SELECT * FROM rdv WHERE datrdv = :datrdv ';
+
+    // Préparation
+    $verifier_rdv = $db->prepare($requette);
+
+    // Exécution ! La recette est maintenant en base de données
+    $resultat = $verifier_rdv->execute([
+        "datrdv" => $datrdv
+    ]);
+
+    if ($resultat) {
+
+        $rdv = $verifier_rdv->fetchAll(PDO::FETCH_ASSOC);
+
+    }
+
+    return $rdv;
 
 }

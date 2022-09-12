@@ -88,6 +88,51 @@ $liste_patient = get_liste_patient();
                             </div>
                         </div>
 
+                        <div class="form-group row">
+                            <label for="nompatient" class="col-sm-2 col-form-label">Nom du patient: </label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" name="nompatient" id="nompatient"
+                                    placeholder="Veuillez entrer le nom du patient"
+                                    value="<?= (isset($donnees["nompatient"]) && !empty($donnees["nompatient"])) ? $donnees["nompatient"] : ""; ?>"
+                                >
+
+
+                                <span class="text-danger">
+
+                                    <?php
+                                    if (isset($erreurs["nompatient"]) && !empty($erreurs["nompatient"])) {
+                                        echo $erreurs["nompatient"];
+                                    }
+
+                                    ?>
+
+                                </span>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group row">
+                            <label for="prenompatient" class="col-sm-2 col-form-label">Prénom(s) du traitement: </label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" name="prenompatient" id="prenompatient"
+                                    placeholder="Veuillez entrer le(s) prénom(s) du patient"
+                                    value="<?= (isset($donnees["prenompatient"]) && !empty($donnees["prenompatient"])) ? $donnees["prenompatient"] : ""; ?>"
+                                >
+
+
+                                <span class="text-danger">
+
+                                    <?php
+                                    if (isset($erreurs["prenompatient"]) && !empty($erreurs["prenompatient"])) {
+                                        echo $erreurs["prenompatient"];
+                                    }
+
+                                    ?>
+
+                                </span>
+                            </div>
+                        </div>
+
 
                         <div class="form-group row">
                             <label for="nompatient" class="col-sm-2 col-form-label">Nom du patient: </label>
